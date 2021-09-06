@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 public class JfxView {
     private HBox searchSkillsBox;
     private VBox resultBox;
+    private HBox skillLevelBox;
 
     /**
      * Create the main view of the application.
@@ -35,6 +37,9 @@ public class JfxView {
         Node searchSkillsBox = createCurrentSearchSkillsWidget();
         root.getChildren().add(searchSkillsBox);
         
+        Node skillLevelBox = createComboBoxWidget();
+        root.getChildren().add(skillLevelBox);
+
 
         Node search = createSearchWidget();
         root.getChildren().add(search);
@@ -108,12 +113,27 @@ public class JfxView {
                 resultBox.getChildren().clear();
                 for (Applicant a : listApplicants) {
                     boolean selected = true;
+                    int total = 0;
+                    int cpt = 0;
                     for (Node skill : searchSkillsBox.getChildren()) {
                         String skillName = ((Button) skill).getText();
-                        if (a.getSkill(skillName) < 50) {
-                            selected = false;
-                            break;
+                        
+                        ComboBox test =  (ComboBox) skillLevelBox.getChildren().get(1);
+                    
+                        if(test.getValue().toString().contains("average")){
+                            total += a.getSkill(skillName);
+                            cpt++;
                         }
+                        else {
+                            if (a.getSkill(skillName) < Integer.parseInt(test.getValue().toString().substring(test.getValue().toString().length() - 2 ))) {
+                                selected = false;
+                                break;
+                            }
+                        }
+                    }
+                    System.out.println(total/cpt);
+                    if(total != 0 && total/cpt < 50){
+                        selected = false;
                     }
                     if (selected) {
                         resultBox.getChildren().add(new Label(a.getName()));
@@ -131,5 +151,20 @@ public class JfxView {
     private Node createCurrentSearchSkillsWidget() {
         searchSkillsBox = new HBox();
         return searchSkillsBox;
+    }
+
+    /**
+     * Create the widget showing the list of skills currently searched
+     * for.
+     */
+    private Node createComboBoxWidget() {
+        skillLevelBox = new HBox();
+        ComboBox comboBox = new ComboBox();
+        
+        comboBox.getItems().addAll("All >= 50", "All >= 60", "Average => 50");
+
+        Label skillLevelLabel = new Label("Stategy: ");
+        skillLevelBox.getChildren().addAll(skillLevelLabel, comboBox);
+        return skillLevelBox;
     }
 }
