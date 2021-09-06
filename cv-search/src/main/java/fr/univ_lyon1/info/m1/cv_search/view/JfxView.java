@@ -120,7 +120,7 @@ public class JfxView {
                         
                         ComboBox test =  (ComboBox) skillLevelBox.getChildren().get(1);
                     
-                        if(test.getValue().toString().contains("average")){
+                        if(test.getValue().toString().contains("Average")){
                             total += a.getSkill(skillName);
                             cpt++;
                         }
@@ -131,7 +131,6 @@ public class JfxView {
                             }
                         }
                     }
-                    System.out.println(total/cpt);
                     if(total != 0 && total/cpt < 50){
                         selected = false;
                     }
