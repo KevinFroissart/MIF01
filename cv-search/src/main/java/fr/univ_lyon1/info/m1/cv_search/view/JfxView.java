@@ -1,6 +1,9 @@
 package fr.univ_lyon1.info.m1.cv_search.view;
 
 import java.io.File;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
@@ -119,13 +122,11 @@ public class JfxView {
                             total += a.getSkill(skillName);
                             cpt++;
                         }
-                        String level = skillLevel.getValue().toString().substring(
-                                skillLevel.getValue().toString().length() - 2
-                        );
-                        if (a.getSkill(skillName) < Integer.parseInt(level)) {
+                        String levelString = skillLevel.getValue().toString();
+                        int level = new Scanner(levelString).useDelimiter("\\D+").nextInt();
+                        if (a.getSkill(skillName) < level) {
                             selected = false;
                             break;
-
                         }
                     }
                     if (total != 0 && total / cpt < 50) {
