@@ -118,12 +118,14 @@ public class JfxView {
                         if (skillLevel.getValue().toString().contains("Average")) {
                             total += a.getSkill(skillName);
                             cpt++;
-                        } else {
-                            if (a.getSkill(skillName) < Integer.parseInt(skillLevel.getValue().toString()
-                                    .substring(skillLevel.getValue().toString().length() - 2))) {
-                                selected = false;
-                                break;
-                            }
+                        }
+                        String level = skillLevel.getValue().toString().substring(
+                                skillLevel.getValue().toString().length() - 2
+                        );
+                        if (a.getSkill(skillName) < Integer.parseInt(level)) {
+                            selected = false;
+                            break;
+
                         }
                     }
                     if (total != 0 && total / cpt < 50) {
