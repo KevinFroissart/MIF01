@@ -154,6 +154,7 @@ public class JfxView {
         ComboBox comboBox = new ComboBox();
 
         comboBox.getItems().addAll("All >= 50", "All >= 60", "Average => 50");
+        comboBox.getSelectionModel().selectFirst();
 
         Label skillLevelLabel = new Label("Stategy: ");
         skillLevelBox.getChildren().addAll(skillLevelLabel, comboBox);
