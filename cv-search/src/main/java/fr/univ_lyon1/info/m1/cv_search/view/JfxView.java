@@ -129,6 +129,7 @@ public class JfxView {
                                 break;
                             }   
                         }
+
                     }
                     if (total != 0 && total / cpt < 50) {
                         selected = false;
