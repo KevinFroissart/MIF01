@@ -91,7 +91,16 @@ email, ce fichier en contient une copie.
 
 * Énoncé : [TP2-outils/README.md](TP2-outils/README.md)
 
-## CM 3 (8/9/2021) : Éthique
+## CM 3 (8/9/2021) : Coding style, Éthique
+
+### Coding style
+
+* Vidéo : [<img src="https://mediacenter.univ-lyon1.fr/videos/MEDIA200812151525896/preview.jpg" width="128" height="72" />](https://mediacenter.univ-lyon1.fr/videos/?video=MEDIA200812151525896)
+
+* Transparents : [03-coding-style-slides.pdf](http://matthieu-moy.fr/cours/mif01/03-coding-style-slides.pdf)
+  (version imprimable : [03-coding-style-handout.pdf](http://matthieu-moy.fr/cours/mif01/03-coding-style-handout.pdf))
+
+### Éthique
 
 * Vidéo : Vidéo : [<img src="https://mediacenter.univ-lyon1.fr/videos/MEDIA200817132953478/preview.jpg" width="128" height="72" />](https://mediacenter.univ-lyon1.fr/videos/?video=MEDIA200817132953478)
 
@@ -109,28 +118,34 @@ email, ce fichier en contient une copie.
 
 * Énoncé : continuer [TP2-outils/README.md](TP2-outils/README.md)
 
-## CM 4 & 5 (9/9/2021) : Coding style, Design-patterns
+## CM 4 & 5 (9/9/2021) : Design-patterns, fin du CM Éthique
 
 ### Design patterns
 
-* Slides : [CM-patterns.pdf](http://matthieu-moy.fr/cours/mif01/https://perso.liris.cnrs.fr/lionel.medini/enseignement/M1IF01/CM-patterns.pdf)
+* Slides : [CM-patterns.pdf](https://perso.liris.cnrs.fr/lionel.medini/enseignement/M1IF01/CM-patterns.pdf)
 
 * Vidéo du mardi 8/9 sur Youtube : [https://youtu.be/oal57dd73nY](https://youtu.be/oal57dd73nY)
 
 * Vidéo du mercredi 9/9 sur Youtube : [https://youtu.be/9oV0xDSrXes](https://youtu.be/9oV0xDSrXes)
 
-### Coding style en fin de CM4
-
-* Vidéo : [<img src="https://mediacenter.univ-lyon1.fr/videos/MEDIA200812151525896/preview.jpg" width="128" height="72" />](https://mediacenter.univ-lyon1.fr/videos/?video=MEDIA200812151525896)
-
-* Transparents : [03-coding-style-slides.pdf](http://matthieu-moy.fr/cours/mif01/03-coding-style-slides.pdf)
-  (version imprimable : [03-coding-style-handout.pdf](http://matthieu-moy.fr/cours/mif01/03-coding-style-handout.pdf))
-
 ## TD 1 (10/9/2021): Design-patterns
+
+* Salles : Cf. TOMUSS pour les étudiants (case MIF01_Salle_TD1_10/9)
+  - Nautibus TD10 : Matthieu Moy
+  - Nautibus TD11 : Lionel Medini
+  - Nautibus TD12 : Lucien Ndjie
+  - Nautibus TD13 : Paul Iannetta
 
 * [TD1-design-patterns](http://matthieu-moy.fr/cours/mif01/TD1-patterns/TD-design-patterns.html)
 
 ## TP 4 (10/9/2021): Design patterns & refactoring
+
+* Salles : 
+  - Groupe A : Nautibus TP 1, Nautibus TP 2
+  - Groupe B : Nautibus TP 3, Nautibus TP 4
+  - Groupe C : Nautibus TP 5, Nautibus TP 6
+  - Groupe D : Nautibus TP 9, Nautibus TP10
+  - Groupe E : Nautibus TP11, Nautibus TP12
 
 * [TP3-patterns/README.md](TP3-patterns/README.md) et de l'aide avec [MVC](TP3-patterns/mvc.md)
 
@@ -143,6 +158,13 @@ email, ce fichier en contient une copie.
   présenté pendant le cours.
 
 ## TP 5 (16/9/2021, 15h45): Design patterns & refactoring, suite
+
+* Salles :
+  - Groupe A : Nautibus TP 1, Nautibus TP 2
+  - Groupe B : Nautibus TP 3, Nautibus TP 4
+  - Groupe C : Nautibus TP 7, Nautibus TP 8
+  - Groupe D : Nautibus TP 9, Nautibus TP10
+  - Groupe E : Nautibus TP12, Nautibus TP14 (réservée Nautibus)
 
 * Continuer avec : [TP3-patterns/README.md](TP3-patterns/README.md) et de l'aide avec [MVC](TP3-patterns/mvc.md)
 
