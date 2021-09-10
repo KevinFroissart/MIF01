@@ -1,13 +1,15 @@
 package fr.univ_lyon1.info.m1.cv_search.view;
 
 import java.io.File;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import fr.univ_lyon1.info.m1.cv_search.controller.CvController;
 import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantListBuilder;
+import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -20,15 +22,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class JfxView {
+public class JfxView implements Observer {
     private HBox searchSkillsBox;
     private VBox resultBox;
     private HBox skillLevelBox;
+    private SkillList skillList;
 
     /**
      * Create the main view of the application.
      */
-    public JfxView(Stage stage, int width, int height) {
+    public JfxView(Stage stage, int width, int height, CvController cvController) {
         // Name of window
         stage.setTitle("Search for CV");
 
@@ -55,7 +58,7 @@ public class JfxView {
         stage.show();
     }
 
-    /**
+    /**customNotify
      * Create the text field to enter a new skill.
      */
     private Node createNewSkillWidget() {
@@ -66,6 +69,7 @@ public class JfxView {
         newSkillBox.getChildren().addAll(labelSkill, textField, submitButton);
         newSkillBox.setSpacing(10);
 
+
         EventHandler<ActionEvent> skillHandler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -73,7 +77,7 @@ public class JfxView {
                 if (text.equals("")) {
                     return; // Do nothing
                 }
-
+                skillList.addSkill(text);
                 Button skillBtn = new Button(text);
                 searchSkillsBox.getChildren().add(skillBtn);
                 skillBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -164,5 +168,12 @@ public class JfxView {
         Label skillLevelLabel = new Label("Stategy: ");
         skillLevelBox.getChildren().addAll(skillLevelLabel, comboBox);
         return skillLevelBox;
+    }
+
+    @Override
+    public void update(Observable observable, Object object) {
+        skillList = (SkillList) observable;
+        System.out.println(skillList.toString());
+        
     }
 }
