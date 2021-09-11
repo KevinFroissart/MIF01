@@ -15,9 +15,11 @@ public class App extends Application {
      * With javafx, start() is called when the application is launched.
      */
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception {    
         SkillList skillList = new SkillList();
         JfxView jfxView = new JfxView(stage, 600, 600, new CvController());
+        //Create Controller
+        CvController controller = new CvController(jfxView);
         skillList.addObserver(jfxView);
         skillList.customNotify();
     }

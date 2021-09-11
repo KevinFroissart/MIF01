@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.awt.event.ActionListener;
 
 public class JfxView implements Observer {
     private HBox searchSkillsBox;
@@ -28,6 +29,12 @@ public class JfxView implements Observer {
     private HBox skillLevelBox;
     private SkillList skillList;
 
+    private Button search = new Button("Search");
+    Button submitButton = new Button("Add skill");
+    Button skillBtn = new Button();
+
+    TextField textField = new TextField();
+    ComboBox skillLevel = new ComboBox<>();
     /**
      * Create the main view of the application.
      */
@@ -58,41 +65,14 @@ public class JfxView implements Observer {
         stage.show();
     }
 
-    /**customNotify
-     * Create the text field to enter a new skill.
+    /**
+     * customNotify Create the text field to enter a new skill.
      */
     private Node createNewSkillWidget() {
         HBox newSkillBox = new HBox();
         Label labelSkill = new Label("Skill:");
-        TextField textField = new TextField();
-        Button submitButton = new Button("Add skill");
         newSkillBox.getChildren().addAll(labelSkill, textField, submitButton);
         newSkillBox.setSpacing(10);
-
-
-        EventHandler<ActionEvent> skillHandler = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                String text = textField.getText().strip();
-                if (text.equals("")) {
-                    return; // Do nothing
-                }
-                skillList.addSkill(text);
-                Button skillBtn = new Button(text);
-                searchSkillsBox.getChildren().add(skillBtn);
-                skillBtn.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        searchSkillsBox.getChildren().remove(skillBtn);
-                    }
-                });
-
-                textField.setText("");
-                textField.requestFocus();
-            }
-        };
-        submitButton.setOnAction(skillHandler);
-        textField.setOnAction(skillHandler);
         return newSkillBox;
     }
 
@@ -108,42 +88,7 @@ public class JfxView implements Observer {
      * Create the widget used to trigger the search.
      */
     private Node createSearchWidget() {
-        Button search = new Button("Search");
-        search.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // TODO
-                ApplicantList listApplicants = new ApplicantListBuilder(new File(".")).build();
-                resultBox.getChildren().clear();
-                for (Applicant a : listApplicants) {
-                    boolean selected = true;
-                    int total = 0;
-                    int cpt = 0;
-                    for (Node skill : searchSkillsBox.getChildren()) {
-                        String skillName = ((Button) skill).getText();
-                        ComboBox skillLevel = (ComboBox) skillLevelBox.getChildren().get(1);
-                        if (skillLevel.getValue().toString().contains("Average")) {
-                            total += a.getSkill(skillName);
-                            cpt++;
-                        } else {
-                            String levelString = skillLevel.getValue().toString();
-                            int level = new Scanner(levelString).useDelimiter("\\D+").nextInt();
-                            if (a.getSkill(skillName) < level) {
-                                selected = false;
-                                break;
-                            }   
-                        }
-
-                    }
-                    if (total != 0 && total / cpt < 50) {
-                        selected = false;
-                    }
-                    if (selected) {
-                        resultBox.getChildren().add(new Label(a.getName()));
-                    }
-                }
-            }
-        });
+        System.out.println("non");
         return search;
     }
 
@@ -170,10 +115,42 @@ public class JfxView implements Observer {
         return skillLevelBox;
     }
 
+    public Button getSearch() {
+        return search;
+    }
+    public Button getSubmitButton() {
+        return submitButton;
+    }
+    public Button getSkillBtn() {
+        return skillBtn;
+    }
+    public TextField getTextField(){
+        return textField;
+    }
+    public SkillList getSkillList(){
+        return skillList;
+    }
+    public HBox getSearchSkillsBox(){
+        return searchSkillsBox;
+    }
+    public VBox getResultBox(){
+        return resultBox;
+    }
+    public ComboBox getSkillLevel(){
+        return skillLevel;
+    }
+    public HBox getSkillLevelBox(){
+        return skillLevelBox;
+    }
+
+    public void addLabel(String a){
+        resultBox.getChildren().add(new Label(a));
+    }
+
     @Override
     public void update(Observable observable, Object object) {
         skillList = (SkillList) observable;
         System.out.println(skillList.toString());
-        
+
     }
 }
