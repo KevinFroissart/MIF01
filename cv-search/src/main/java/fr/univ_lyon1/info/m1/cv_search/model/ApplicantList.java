@@ -14,7 +14,6 @@ public class ApplicantList implements Iterable<Applicant> {
     void add(Applicant a) {
         list.add(a);
     }
-
     
     /** 
      * Returns the applicant list size.
@@ -24,7 +23,6 @@ public class ApplicantList implements Iterable<Applicant> {
         return list.size();
     }
 
-    
     /** 
      * Iterator for the applicant list.
      * @return the iterator.

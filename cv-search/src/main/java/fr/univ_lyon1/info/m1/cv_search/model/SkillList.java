@@ -6,53 +6,52 @@ import java.util.Observable;
 
 public class SkillList extends Observable {
 
-    List<String> skillList;
+    private List<String> skillList;
 
-    public SkillList(){
+    public SkillList() {
         super();
         skillList = new ArrayList<>();
     }
 
-    public SkillList(String skill){
+    public SkillList(String skill) {
         super();
         skillList = new ArrayList<>();
         skillList.add(skill);
     }
 
-    public SkillList(List<String> skills){
+    public SkillList(List<String> skills) {
         super();
         skillList = skills;
     }
 
-    public void addSkill(String skill){
+    public void addSkill(String skill) {
         skillList.add(skill);
         customNotify();
     }
 
-    public int getSize(){
+    public int getSize() {
         return skillList.size();
     }
 
-    public boolean removeSkill(String skill){
-        if(skillList.remove(skill)){
+    public List<String> getSkillList() {
+        return skillList;
+    }
+
+    public boolean removeSkill(String skill) {
+        if (skillList.remove(skill)) {
             customNotify();
             return true;
         }
         return false;
     }
 
-    public void customNotify(){
+    public void customNotify() {
         setChanged();
         notifyObservers();
     }
 
     @Override
-    public String toString(){
-        String res = "";
-        for(String skill : skillList){
-            res+= skill + ",";
-        }
-        return res;
+    public String toString() {
+        return skillList.toString();
     }
-    
 }
