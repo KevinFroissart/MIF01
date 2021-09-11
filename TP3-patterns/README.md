@@ -155,7 +155,6 @@ experience:
       - PHP
 ```
 
-### Sélection des 10 contacts les plus fréquents
 Qu'il faut lire « le candidat a travaillé de 2005 à 2010 chez Google
 où il a pratiqué C, C++ et Java, puis de 2010 à 2021 chez Facebook où
 il a pratiqué Python et PHP ». Proposez un ou plusieurs moyens
