@@ -22,7 +22,6 @@ public class App extends Application {
         skillList.customNotify();
     }
 
-
     /**
      * A main method in case the user launches the application using
      * App as the main class.
