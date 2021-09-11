@@ -17,10 +17,14 @@ obligatoirement :
 - une présentation globale du projet (rapide : ne répétez pas
   l'énoncé),
 
-- Une section « design patterns », donnant une motivation des choix d’architecture (et des patterns choisis), et leur explication en s’aidant de diagrammes appropriés et adaptés au degré de précision et au type d’explication. Donc des diagrammes de classe, mais pas que cela, et pas de plats de spaghettis générés automatiquement représentant tout le code.
+- Une section « design patterns », donnant une motivation des choix
+  d’architecture (et des patterns choisis), et leur explication en s’aidant de
+  diagrammes appropriés et adaptés au degré de précision et au type
+  d’explication. Donc des diagrammes de classe, mais pas que cela, et pas de
+  plats de spaghettis générés automatiquement représentant tout le code.
   
 * Une section « éthique » où vous expliquerez les choix que vous avez
-  fait en terme de stratégie de sélection de CV : comment vous
+  fait en termes de stratégie de sélection de CV : comment vous
   assurez-vous que vous choisissez les bons CV, et que vous ne ratez
   pas de candidat intéressant (en particulier, pourrait-on accuser
   votre algorithme de discrimination ?) ? L'algorithme peut-il être
@@ -28,7 +32,7 @@ obligatoirement :
   travail ? Si oui, donnez des exemples et justifiez.
   
   Idéalement, appuyez vos réflexions et affirmations sur des cas
-  concrêts en citant vos sources. L'outil de sélection de CV que nous
+  concrets en citant vos sources. L'outil de sélection de CV que nous
   avons écrit est un jouet, mais les outils de gestion de CV assistés
   par ordinateurs sont une réalité, en particulier dans les grandes
   entreprises et les cabinets de recrutement (pensez à Google qui
@@ -119,19 +123,19 @@ Votre dépôt sur la Forge devra contenir :
   - Au moins une "issue" fermée sur le projet (1 pt)
   - Interface (UI) propre (1 pts)
   - Extensions obligatoires (cf. [TP3-patterns/](TP3-patterns/)) :
-    - N'envoyer que les contacts rencontrés plusieurs fois (1 pt)
-    - Choix de la stratégie de sélection des contacts à envoyer (1 pt)
-    - Sélection des 10 contacts les plus fréquents (1 pt)
-    - Possibilité de supprimer des contacts (2 pts)
-    - Bouton « meet » directement sur les utilisateurs (2 pts)
-    - Création de la liste d'utilisateurs (1 pt)
+    - Stratégies de sélection des candidats « tout >= 50% », « tout >= 60% », « moyenne >= 50% » (1 pt)
+    - Au moins une autre stratégie de sélection (1 pt)
+    - Prise en compte de l'expérience professionnelle (2 pts)
+    - Modification de l'interface (bouton pour supprimer une compétence de la liste) (1 pt)
+    - Affichage de la liste avec affichage d'autre chose que le nom du candidat (1 pt)
+    - Tri de la liste des candidats (1 pt)
   - Autres extensions (3 pts)
   - Modification de l'interface utilisateur (1 pt)
   - Tests automatiques (3 pts)
   - Intégration continue opérationnelle (gitlab affiche "Commit: passed" sur le dernier commit) (1 pt)
   - Principes GRASP bien appliqués (1 pt)
   - Mise en place du MVC (3pts)
-  - Possibilité d'avoir une deuxième vue (1 pt)
+  - Possibilité d'avoir une deuxième vue (activée par défaut, ou en commentaire dans le code) (1 pt)
   - Design-patterns (création, structure, SOLID, ...) (5 pts)
 - Rapport et modélisation :
   - Partie « design patterns » (6pts)
