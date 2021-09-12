@@ -21,13 +21,12 @@ public class JfxView implements Observer {
     private HBox searchSkillsBox;
     private VBox resultBox;
     private HBox skillLevelBox;
-    private SkillList skillList;
     private CvController cvController;
 
     /**
      * Create the main view of the application.
      */
-    public JfxView(Stage stage, int width, int height, CvController cvController) {
+    public JfxView(CvController cvController, Stage stage, int width, int height) {
         this.cvController = cvController;
         stage.setTitle("Search for CV");
 
@@ -64,13 +63,10 @@ public class JfxView implements Observer {
         newSkillBox.getChildren().addAll(labelSkill, textField, submitButton);
         newSkillBox.setSpacing(10);
 
-        EventHandler<ActionEvent> skillHandler = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                cvController.addSkill(skillList, textField.getText().strip());
-                textField.setText("");
-                textField.requestFocus();
-            }
+        EventHandler<ActionEvent> skillHandler = event -> {
+            cvController.addSkill(textField.getText().strip());
+            textField.setText("");
+            textField.requestFocus();
         };
         submitButton.setOnAction(skillHandler);
         textField.setOnAction(skillHandler);
@@ -90,16 +86,13 @@ public class JfxView implements Observer {
      */
     private Node createSearchWidget() {
         Button search = new Button("Search");
-        search.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                resultBox.getChildren().clear();
-                ComboBox comboBox = (ComboBox) skillLevelBox.getChildren().get(1);
-                String strategy = comboBox.getValue().toString();
-                cvController.selectApplicant(strategy, skillList).forEach(
-                        applicant -> resultBox.getChildren().add(new Label(applicant.getName()))
-                );
-            }
+        search.setOnAction(event -> {
+            resultBox.getChildren().clear();
+            ComboBox comboBox = (ComboBox) skillLevelBox.getChildren().get(1);
+            String strategy = comboBox.getValue().toString();
+            cvController.selectApplicant(strategy).forEach(
+                    applicant -> resultBox.getChildren().add(new Label(applicant.getName()))
+            );
         });
         return search;
     }
@@ -113,7 +106,7 @@ public class JfxView implements Observer {
     }
 
     /**
-     * Create the widget showing the list of skills currently searched for.
+     * Create the widget showing the dropdown list of skill research strategies.
      */
     private Node createComboBoxWidget() {
         skillLevelBox = new HBox();
@@ -131,23 +124,20 @@ public class JfxView implements Observer {
      * Adds or removes buttons on the searchSkillBox
      * depending on the skillList state.
      */
-    private void updateSkill() {
+    private void updateSkillWidget(SkillList skillList) {
         searchSkillsBox.getChildren().clear();
-        for (String skill : skillList.getSkillList()) {
+        for (String skill : skillList) {
             Button skillBtn = new Button(skill);
             searchSkillsBox.getChildren().add(skillBtn);
-            skillBtn.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    cvController.removeSkill(skillList, skill);
-                }
-            });
+            skillBtn.setOnAction(event -> cvController.removeSkill(skill));
         }
     }
 
     @Override
     public void update(Observable observable, Object object) {
-        skillList = (SkillList) observable;
-        updateSkill();
+        updateSkillWidget((SkillList) observable);
+        // Que ce passe-t-il si nous avons plusieurs Obserable ?
+        // Si le cast ne passe pas ?
+        // Solution si ne fonctionne pas -> controller.getList
     }
 }
