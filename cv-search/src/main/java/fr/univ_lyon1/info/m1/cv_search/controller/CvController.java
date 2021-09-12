@@ -1,21 +1,23 @@
 package fr.univ_lyon1.info.m1.cv_search.controller;
 
-import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterAverage;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterGreater;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterLesser;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantListBuilder;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterStrategy;
 import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
 import fr.univ_lyon1.info.m1.cv_search.view.JfxView;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Scanner;
 
 public class CvController extends Observable {
 
     private SkillList skillList;
+    private static FilterStrategy filterStrategy;
 
     public CvController(Stage stage) {
         this.skillList = new SkillList();
@@ -47,35 +49,18 @@ public class CvController extends Observable {
      * @param strategy
      * @return
      */
-    public List<Applicant> selectApplicant(String strategy) {
+    public ApplicantList selectApplicant(String strategy) {
         ApplicantList listApplicants = new ApplicantListBuilder(new File(".")).build();
-        List<Applicant> selectedApplicants = new ArrayList<>();
-
         int level = new Scanner(strategy).useDelimiter("\\D+").nextInt();
-        boolean average = strategy.contains("Average");
 
-        for (Applicant applicant : listApplicants) {
-            boolean selected = true;
-            int total = 0;
-            int cpt = 0;
-
-            for (String skill : skillList) {
-                if (!average && applicant.getSkill(skill) < level) {
-                    selected = false;
-                    break;
-                } else {
-                    total += applicant.getSkill(skill);
-                    cpt++;
-                }
-            }
-            if (average && total / cpt < 50) {
-                selected = false;
-            }
-            if (selected) {
-                selectedApplicants.add(applicant);
-            }
+        if (strategy.contains("Average")) {
+            filterStrategy = new FilterAverage();
+        } else if (strategy.contains(">=")) {
+            filterStrategy = new FilterGreater();
+        } else if (strategy.contains("<=")) {
+            filterStrategy = new FilterLesser();
         }
-        return selectedApplicants;
+        return filterStrategy.getApplicants(level, listApplicants, skillList);
     }
 
 }
