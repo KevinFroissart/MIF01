@@ -21,13 +21,11 @@ public class JfxView implements Observer {
     private HBox searchSkillsBox;
     private VBox resultBox;
     private HBox skillLevelBox;
-    private CvController cvController;
 
     /**
      * Create the main view of the application.
      */
-    public JfxView(CvController cvController, Stage stage, int width, int height) {
-        this.cvController = cvController;
+    public JfxView(Stage stage, int width, int height) {
         stage.setTitle("Search for CV");
 
         VBox root = new VBox();
@@ -64,7 +62,7 @@ public class JfxView implements Observer {
         newSkillBox.setSpacing(10);
 
         EventHandler<ActionEvent> skillHandler = event -> {
-            cvController.addSkill(textField.getText().strip());
+            CvController.getInstance(this).addSkill(textField.getText().strip());
             textField.setText("");
             textField.requestFocus();
         };
@@ -90,7 +88,7 @@ public class JfxView implements Observer {
             resultBox.getChildren().clear();
             ComboBox comboBox = (ComboBox) skillLevelBox.getChildren().get(1);
             String strategy = comboBox.getValue().toString();
-            cvController.selectApplicant(strategy).forEach(
+            CvController.getInstance(this).selectApplicant(strategy).forEach(
                     applicant -> resultBox.getChildren().add(new Label(applicant.getName()))
             );
         });
@@ -129,7 +127,7 @@ public class JfxView implements Observer {
         for (String skill : skillList) {
             Button skillBtn = new Button(skill);
             searchSkillsBox.getChildren().add(skillBtn);
-            skillBtn.setOnAction(event -> cvController.removeSkill(skill));
+            skillBtn.setOnAction(event ->  CvController.getInstance(this).removeSkill(skill));
         }
     }
 

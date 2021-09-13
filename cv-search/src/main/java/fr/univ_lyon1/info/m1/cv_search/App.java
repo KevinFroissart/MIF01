@@ -1,6 +1,6 @@
 package fr.univ_lyon1.info.m1.cv_search;
 
-import fr.univ_lyon1.info.m1.cv_search.controller.CvController;
+import fr.univ_lyon1.info.m1.cv_search.view.JfxView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -14,7 +14,7 @@ public class App extends Application {
      */
     @Override
     public void start(Stage stage) {
-        new CvController(stage);
+        new JfxView(stage, 600, 600);
     }
 
     /**
