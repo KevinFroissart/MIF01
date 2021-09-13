@@ -8,22 +8,32 @@ import fr.univ_lyon1.info.m1.cv_search.model.ApplicantListBuilder;
 import fr.univ_lyon1.info.m1.cv_search.model.FilterStrategy;
 import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
 import fr.univ_lyon1.info.m1.cv_search.view.JfxView;
-import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.Observable;
 import java.util.Scanner;
 
-public class CvController extends Observable {
+public final class CvController {
+
+    private static volatile CvController instance = null;
 
     private SkillList skillList;
     private static FilterStrategy filterStrategy;
 
-    public CvController(Stage stage) {
+    private CvController(JfxView view) {
         this.skillList = new SkillList();
-        JfxView mainScreen = new JfxView(this, stage, 600, 600);
-        skillList.addObserver(mainScreen);
+        skillList.addObserver(view);
         skillList.customNotify();
+    }
+
+    public static CvController getInstance(JfxView view) {
+        if (CvController.instance == null) {
+            synchronized (CvController.class) {
+                if (CvController.instance == null) {
+                    CvController.instance = new CvController(view);
+                }
+            }
+        }
+        return instance;
     }
 
     /**
