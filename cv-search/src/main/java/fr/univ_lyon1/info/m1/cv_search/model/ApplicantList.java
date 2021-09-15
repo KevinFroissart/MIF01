@@ -6,28 +6,25 @@ import java.util.List;
 
 public class ApplicantList implements Iterable<Applicant> {
     private List<Applicant> list = new ArrayList<Applicant>();
-
-    /**
+    
+    /** 
      * Add applicant to applicant list.
-     * 
      * @param a the applicant.
      */
     void add(Applicant a) {
         list.add(a);
     }
-
-    /**
+    
+    /** 
      * Returns the applicant list size.
-     * 
      * @return the size.
      */
     public int size() {
         return list.size();
     }
 
-    /**
+    /** 
      * Iterator for the applicant list.
-     * 
      * @return the iterator.
      */
     @Override
