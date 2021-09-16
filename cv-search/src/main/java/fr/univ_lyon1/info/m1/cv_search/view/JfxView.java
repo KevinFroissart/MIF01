@@ -7,6 +7,7 @@ import fr.univ_lyon1.info.m1.cv_search.controller.CvController;
 import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -121,7 +122,7 @@ public class JfxView implements Observer {
     /**
      * Adds or removes buttons on the searchSkillBox
      * depending on the skillList state.
-     */
+     
     private void updateSkillWidget(SkillList skillList) {
         searchSkillsBox.getChildren().clear();
         for (String skill : skillList) {
@@ -129,7 +130,28 @@ public class JfxView implements Observer {
             searchSkillsBox.getChildren().add(skillBtn);
             skillBtn.setOnAction(event ->  CvController.getInstance(this).removeSkill(skill));
         }
+    }*/
+
+    private void updateSkillWidget(SkillList skillList) {
+        searchSkillsBox.getChildren().clear();
+        
+        
+        for (String skill : skillList) {
+            final HBox box = new HBox();
+
+            final Button b = new Button("x");
+            final Label labelContact = new Label(skill);
+            b.setOnAction(event ->  CvController.getInstance(this).removeSkill(skill));
+
+            box.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
+                + "-fx-border-width: 1;" + "-fx-border-insets: 5;"
+                + "-fx-border-radius: 5;" + "-fx-border-color: black;");
+            box.setAlignment(Pos.BASELINE_CENTER);
+            box.getChildren().addAll(labelContact, b);
+            searchSkillsBox.getChildren().addAll(box);
+        }
     }
+
 
     @Override
     public void update(Observable observable, Object object) {
