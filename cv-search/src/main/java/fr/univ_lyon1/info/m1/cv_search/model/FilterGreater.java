@@ -21,7 +21,7 @@ public class FilterGreater implements FilterStrategy {
         return selectedApplicants;
     }
 
-    public String toString(){
+    public String toString() {
         return "All >= 60";
     }
 }

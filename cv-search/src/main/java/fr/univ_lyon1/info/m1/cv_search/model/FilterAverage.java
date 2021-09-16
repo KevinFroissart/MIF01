@@ -20,7 +20,7 @@ public class FilterAverage implements FilterStrategy {
         return selectedApplicants;
     }
 
-    public String toString(){
+    public String toString() {
         return "Average => 50";
     }
 }
