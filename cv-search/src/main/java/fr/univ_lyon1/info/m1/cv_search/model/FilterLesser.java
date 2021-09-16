@@ -21,7 +21,7 @@ public class FilterLesser implements FilterStrategy {
         return selectedApplicants;
     }
 
-    public String toString(){
+    public String toString() {
         return "All >= 50";
     }
 }

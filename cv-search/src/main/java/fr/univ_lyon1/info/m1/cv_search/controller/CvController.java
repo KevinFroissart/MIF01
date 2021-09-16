@@ -1,8 +1,5 @@
 package fr.univ_lyon1.info.m1.cv_search.controller;
 
-import fr.univ_lyon1.info.m1.cv_search.model.FilterAverage;
-import fr.univ_lyon1.info.m1.cv_search.model.FilterGreater;
-import fr.univ_lyon1.info.m1.cv_search.model.FilterLesser;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantListBuilder;
 import fr.univ_lyon1.info.m1.cv_search.model.FilterStrategy;
@@ -10,7 +7,6 @@ import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
 import fr.univ_lyon1.info.m1.cv_search.view.JfxView;
 
 import java.io.File;
-import java.util.Scanner;
 
 public final class CvController {
 
