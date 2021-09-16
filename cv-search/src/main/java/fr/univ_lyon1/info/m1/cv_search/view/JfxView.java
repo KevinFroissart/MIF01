@@ -1,11 +1,19 @@
 package fr.univ_lyon1.info.m1.cv_search.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 import fr.univ_lyon1.info.m1.cv_search.controller.CvController;
 import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterAverageFifty;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterGEFifty;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterGESixty;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterLEFifty;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterStrategy;
+
 import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -99,7 +107,7 @@ public class JfxView implements Observer {
         search.setOnAction(event -> {
             resultBox.getChildren().clear();
             ComboBox comboBox = (ComboBox) skillLevelBox.getChildren().get(1);
-            String strategy = comboBox.getValue().toString();
+            FilterStrategy strategy = (FilterStrategy) comboBox.getValue();
             ApplicantList applicantList = cvController.selectApplicant(strategy);
             for (Applicant applicant : applicantList) {
                 resultBox.getChildren().add(new Label(applicant.getName()));
@@ -123,7 +131,13 @@ public class JfxView implements Observer {
         skillLevelBox = new HBox();
         ComboBox comboBox = new ComboBox();
 
-        comboBox.getItems().addAll("All >= 50", "All >= 60", "Average => 50");
+        List<FilterStrategy> strategyList = new ArrayList<>();
+        strategyList.add(new FilterLEFifty());
+        strategyList.add(new FilterGEFifty());
+        strategyList.add(new FilterGESixty());
+        strategyList.add(new FilterAverageFifty());
+
+        comboBox.getItems().addAll(strategyList);
         comboBox.getSelectionModel().selectFirst();
 
         Label skillLevelLabel = new Label("Stategy: ");
@@ -131,6 +145,9 @@ public class JfxView implements Observer {
         return skillLevelBox;
     }
 
+    /**
+     * Updates the skillWidget.
+     */
     private void updateSkillWidget() {
         searchSkillsBox.getChildren().clear();
 
@@ -150,12 +167,8 @@ public class JfxView implements Observer {
         }
     }
 
-
     @Override
     public void update(Observable observable, Object object) {
         updateSkillWidget();
-        // Que ce passe-t-il si nous avons plusieurs Obserable ?
-        // Si le cast ne passe pas ?
-        // Solution si ne fonctionne pas -> controller.getList
     }
 }
