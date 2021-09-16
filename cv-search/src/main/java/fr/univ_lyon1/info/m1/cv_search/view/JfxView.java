@@ -119,19 +119,6 @@ public class JfxView implements Observer {
         return skillLevelBox;
     }
 
-    /**
-     * Adds or removes buttons on the searchSkillBox
-     * depending on the skillList state.
-     
-    private void updateSkillWidget(SkillList skillList) {
-        searchSkillsBox.getChildren().clear();
-        for (String skill : skillList) {
-            Button skillBtn = new Button(skill);
-            searchSkillsBox.getChildren().add(skillBtn);
-            skillBtn.setOnAction(event ->  CvController.getInstance(this).removeSkill(skill));
-        }
-    }*/
-
     private void updateSkillWidget(SkillList skillList) {
         searchSkillsBox.getChildren().clear();
         
