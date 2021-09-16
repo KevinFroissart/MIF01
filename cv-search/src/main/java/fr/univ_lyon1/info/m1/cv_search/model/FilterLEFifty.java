@@ -1,14 +1,22 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
-public class FilterGreater implements FilterStrategy {
+public class FilterLEFifty implements FilterStrategy {
 
+    private int level = 50;
+
+    /**
+     * Strategy to select applicants with a set of skill lesser or equal to 50.
+     * @param applicants
+     * @param skills
+     * @return the selected applicants.
+     */
     @Override
-    public ApplicantList getApplicants(int level, ApplicantList applicants, SkillList skills) {
+    public ApplicantList getApplicants(ApplicantList applicants, SkillList skills) {
         ApplicantList selectedApplicants = new ApplicantList();
         for (Applicant applicant : applicants) {
             boolean selected = true;
             for (String skill : skills) {
-                if (applicant.getSkill(skill) < level) {
+                if (applicant.getSkill(skill) > level) {
                     selected = false;
                     break;
                 }
@@ -18,5 +26,9 @@ public class FilterGreater implements FilterStrategy {
             }
         }
         return selectedApplicants;
+    }
+
+    public String toString() {
+        return "All <= " + level;
     }
 }
