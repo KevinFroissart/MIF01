@@ -59,18 +59,9 @@ public final class CvController {
      * @param strategy
      * @return
      */
-    public ApplicantList selectApplicant(String strategy) {
+    public ApplicantList selectApplicant(FilterStrategy strategy) {
         ApplicantList listApplicants = new ApplicantListBuilder(new File(".")).build();
-        int level = new Scanner(strategy).useDelimiter("\\D+").nextInt();
-
-        if (strategy.contains("Average")) {
-            filterStrategy = new FilterAverage();
-        } else if (strategy.contains(">=")) {
-            filterStrategy = new FilterGreater();
-        } else if (strategy.contains("<=")) {
-            filterStrategy = new FilterLesser();
-        }
-        return filterStrategy.getApplicants(level, listApplicants, skillList);
+        return strategy.getApplicants(listApplicants, skillList);
     }
 
 }

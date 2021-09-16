@@ -3,7 +3,8 @@ package fr.univ_lyon1.info.m1.cv_search.model;
 public class FilterAverage implements FilterStrategy {
 
     @Override
-    public ApplicantList getApplicants(int level, ApplicantList applicants, SkillList skills) {
+    public ApplicantList getApplicants(ApplicantList applicants, SkillList skills) {
+        int level = 50;
         ApplicantList selectedApplicants = new ApplicantList();
         for (Applicant applicant : applicants) {
             int total = 0;
@@ -17,5 +18,9 @@ public class FilterAverage implements FilterStrategy {
             }
         }
         return selectedApplicants;
+    }
+
+    public String toString(){
+        return "Average => 50";
     }
 }
