@@ -4,6 +4,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import fr.univ_lyon1.info.m1.cv_search.controller.CvController;
+import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
+import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
 import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,6 +21,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class JfxView implements Observer {
+    private SkillList skillList;
+
+    private CvController cvController;
+
     private HBox searchSkillsBox;
     private VBox resultBox;
     private HBox skillLevelBox;
@@ -27,6 +33,11 @@ public class JfxView implements Observer {
      * Create the main view of the application.
      */
     public JfxView(Stage stage, int width, int height) {
+        this.skillList = new SkillList();
+        skillList.addObserver(this);
+
+        this.cvController = new CvController(skillList);
+
         stage.setTitle("Search for CV");
 
         VBox root = new VBox();
@@ -63,7 +74,7 @@ public class JfxView implements Observer {
         newSkillBox.setSpacing(10);
 
         EventHandler<ActionEvent> skillHandler = event -> {
-            CvController.getInstance(this).addSkill(textField.getText().strip());
+            cvController.addSkill(textField.getText().strip());
             textField.setText("");
             textField.requestFocus();
         };
@@ -89,9 +100,10 @@ public class JfxView implements Observer {
             resultBox.getChildren().clear();
             ComboBox comboBox = (ComboBox) skillLevelBox.getChildren().get(1);
             String strategy = comboBox.getValue().toString();
-            CvController.getInstance(this).selectApplicant(strategy).forEach(
-                    applicant -> resultBox.getChildren().add(new Label(applicant.getName()))
-            );
+            ApplicantList applicantList = cvController.selectApplicant(strategy);
+            for (Applicant applicant : applicantList) {
+                resultBox.getChildren().add(new Label(applicant.getName()));
+            }
         });
         return search;
     }
@@ -119,16 +131,15 @@ public class JfxView implements Observer {
         return skillLevelBox;
     }
 
-    private void updateSkillWidget(SkillList skillList) {
+    private void updateSkillWidget() {
         searchSkillsBox.getChildren().clear();
-        
-        
+
         for (String skill : skillList) {
             final HBox box = new HBox();
 
             final Button b = new Button("x");
             final Label labelContact = new Label(skill);
-            b.setOnAction(event ->  CvController.getInstance(this).removeSkill(skill));
+            b.setOnAction(event ->  cvController.removeSkill(skill));
 
             box.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
                 + "-fx-border-width: 1;" + "-fx-border-insets: 5;"
@@ -142,7 +153,7 @@ public class JfxView implements Observer {
 
     @Override
     public void update(Observable observable, Object object) {
-        updateSkillWidget((SkillList) observable);
+        updateSkillWidget();
         // Que ce passe-t-il si nous avons plusieurs Obserable ?
         // Si le cast ne passe pas ?
         // Solution si ne fonctionne pas -> controller.getList
