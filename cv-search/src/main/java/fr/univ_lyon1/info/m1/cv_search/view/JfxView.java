@@ -4,6 +4,10 @@ import java.util.Observable;
 import java.util.Observer;
 
 import fr.univ_lyon1.info.m1.cv_search.controller.CvController;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterAverage;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterGreater;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterLesser;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterStrategy;
 import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -88,7 +92,7 @@ public class JfxView implements Observer {
         search.setOnAction(event -> {
             resultBox.getChildren().clear();
             ComboBox comboBox = (ComboBox) skillLevelBox.getChildren().get(1);
-            String strategy = comboBox.getValue().toString();
+            FilterStrategy strategy = (FilterStrategy) comboBox.getValue();
             CvController.getInstance(this).selectApplicant(strategy).forEach(
                     applicant -> resultBox.getChildren().add(new Label(applicant.getName()))
             );
@@ -110,8 +114,11 @@ public class JfxView implements Observer {
     private Node createComboBoxWidget() {
         skillLevelBox = new HBox();
         ComboBox comboBox = new ComboBox();
-
-        comboBox.getItems().addAll("All >= 50", "All >= 60", "Average => 50");
+        
+        FilterLesser filterLesser = new FilterLesser();
+        FilterGreater filterGreater = new FilterGreater();
+        FilterAverage average = new FilterAverage();
+        comboBox.getItems().addAll(filterLesser, filterGreater, average);
         comboBox.getSelectionModel().selectFirst();
 
         Label skillLevelLabel = new Label("Stategy: ");
