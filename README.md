@@ -36,7 +36,7 @@ Barème : 50% examen / 50% TP. Seul l'examen est rattrapable en session 2.
 
 Si la situation sanitaire le permet, le cours sera en 100% présentiel, mais les étudiants qui le souhaitent peuvent utiliser les vidéos préparées l'an passé pour les cours magistraux (disponibles sur le mediacenter Lyon 1, et sur la [playlist youtube](https://www.youtube.com/playlist?list=PL6-YbcqXawf5ED3NHDZYejWJaAschnrO0)).
 
-Les CM de cette matière sont majoritairement en 100 % distanciel avec des vidéos disponibles à l'avance. Vous pouvez interagir avec les enseignants sur ce canal : [mif01](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2Fi5Lsmn). Vous pouvez utiliser ce canal pour poser vos questions, faire des remarques, demander de l'aide, ... pendant les séances et en dehors (nous ferons notre possible pour lire les messages au moins une fois par jour en semaine). D'autres canaux pourront être créés si besoin. Il est recommandé d'avoir le tchat ouvert même si vous êtes physiquement présents au Nautibus : vous pouvez poser des questions sur le tchat si vous pensez qu'elles intéressent d'autres étudiants, et nous utiliserons peut-être ce canal pour passer des informations à tout le monde pendant les séances.
+Les CM de cette matière sont majoritairement en 100 % distanciel avec des vidéos disponibles à l'avance. Vous pouvez interagir avec les enseignants sur ce canal : [mif01-2021](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2Fi5Lsmn). Vous pouvez utiliser ce canal pour poser vos questions, faire des remarques, demander de l'aide, ... pendant les séances et en dehors (nous ferons notre possible pour lire les messages au moins une fois par jour en semaine). D'autres canaux pourront être créés si besoin. Il est recommandé d'avoir le tchat ouvert même si vous êtes physiquement présents au Nautibus : vous pouvez poser des questions sur le tchat si vous pensez qu'elles intéressent d'autres étudiants, et nous utiliserons peut-être ce canal pour passer des informations à tout le monde pendant les séances.
 
 `chat-info` utilise le logiciel [RocketChat](https://rocket.chat/), vous pouvez l'utiliser dans un navigateur, et/ou installer le client RocketChat sur votre PC, Mac ou smartphone. Dans tous les cas il est indispensable de suivre le lien d'invitation pour s'inscrire au canal : [mif01](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2Fi5Lsmn).
 
@@ -150,9 +150,9 @@ email, ce fichier en contient une copie.
 
 * [TP3-patterns/README.md](TP3-patterns/README.md) et de l'aide avec [MVC](TP3-patterns/mvc.md)
 
-## CM 6 (16/9/2021) : Test
+## CM 6 (16/9/2021, 14h) : Test
 
-* Transparents de Sandrine Gouraud : à venir
+* [Transparents de Sandrine Gouraud](http://matthieu-moy.fr/cours/mif01/SandrineGouraud_16092021.pdf)
 
 * [Software Fail Watch, 5th
   edition](https://www.tricentis.com/wp-content/uploads/2019/01/Software-Fails-Watch-5th-edition.pdf)
@@ -170,6 +170,8 @@ email, ce fichier en contient une copie.
 * Continuer avec : [TP3-patterns/README.md](TP3-patterns/README.md) et de l'aide avec [MVC](TP3-patterns/mvc.md)
 
 ## TP 6 (16/9/2021, 17h30): tests
+
+* Salles : mêmes que sur le créneau 15h45
 
 * Énoncé : [TP4-tests/README.md](TP4-tests/README.md)
 

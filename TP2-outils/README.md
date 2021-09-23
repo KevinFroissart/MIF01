@@ -85,13 +85,47 @@ qui a échouée, vous verrez pourquoi à la fin du TP.
 
 ### .gitignore et gestion d’un ticket
 
-Les utilitaires comme Maven génèrent un grand nombre de fichiers qu'ils ne
+Les utilitaires comme Maven génèrent un grand nombre de fichiers qu'il ne
 faut pas ajouter à vos dépôts. Vous allez donc configurer ce projet de
 manière à les ignorer. Pour cela vous allez utiliser en plus l'outil de
 gestion de tickets.
 
+#### Suppression éventuelle des fichiers qui n'auraient jamais du être là
+
+Les fichiers générés par Maven se trouvent tous dans le répertoire `target/`.
+Ils ne devraient pas être trackés par Git (personne n'a envie de faire des merge
+sur des fichiers `.class` ...), mais il est possible que des fichiers aient été
+ajoutés par erreur. Vérifions. On doit voir les fichiers générés sur le disque :
+
+```sh
+$ ls target
+... classes/  maven-status/  surefire-reports/  test-classes/ ...
+```
+
+mais pas comme fichiers gérés par Git (la commande ne renvoie rien) :
+
+```sh
+$ git ls-files target
+$ 
+```
+
+Si `git ls-files target` affiche des noms de fichiers, c'est que vous (ou votre
+binôme) les avez ajoutés par erreur. Un `git log target` vous pointera le
+coupable. C'est embêtant car ces fichiers prennent de l'espace disque pour rien
+dans votre historique, et les supprimer maintenant ne vous rendra pas cet espace
+disque : ce qu'il aurait fallu faire, c'est travailler proprement dès le début
+(commencez par prendre l'habitude de faire un `git status` avant chaque
+commit) ! Mais réparons ce qui est encore réparable :
+
+```sh
+git rm -r target/
+git commit -m "Suppression du répertoire target/, qui n'aurait jamais du être ajouté"
+```
+
+#### Fichiers ignorés
+
 Depuis l'interface web de la forge, créez une nouvelle demande
-(*issue*) intitulée: “ignorer le répertoire target et les fichiers des
+(*issue*) intitulée : “ignorer le répertoire target et les fichiers des
 IDE”. En effet, ce dossier `target` sera créé par Maven au moment du build, et
 contiendra les fichiers `.class` et le jar. Les fichiers comme
 `.classpath` sont générés par les IDE comme Eclipse et ne doivent pas
@@ -123,10 +157,11 @@ log/
 target/
 ```
 
-Ce fichier contient la liste des fichiers que git doit ignorer : la
-commande `git status` ne les mentionnera pas dans la section
-`Untracked files`, et la commande `git add` refusera par défaut de les
-ajouter.
+Ce fichier contient la liste des fichiers que git doit ignorer : la commande
+`git status` ne les mentionnera pas dans la section `Untracked files`, et la
+commande `git add` refusera par défaut de les ajouter. Si vous aviez déjà fait
+un `git add` sur ces fichiers, alors les fichiers déjà ajoutés restent trackés
+par Git (cf. ci-dessus pour les supprimer explicitement avec `git rm`).
 
 ```sh
 git status
@@ -157,7 +192,9 @@ commit. Vous pouvez vérifier que le `#1` est un lien vers votre
 demande, et que la présence de `fixes #1` dans un message de commit
 a automatiquement fermé le ticket correspondant.
 
-Votre [projet](../projet-note.md) devra impérativement ignorer tous les fichiers générés, et avoir au moins une « issue » GitLab (fermée) (vous perdrez des points sur la note sinon).
+Votre [projet](../projet-note.md) devra impérativement ignorer tous les fichiers
+générés (qui ne doivent bien sûr pas être trackés), et avoir au moins une «
+issue » GitLab (fermée) (vous perdrez des points sur la note sinon).
 
 ### Un gitignore local par utilisateur
 

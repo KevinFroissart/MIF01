@@ -42,8 +42,8 @@ Il y a bien plus de questions à vous poser, comme par exemple :
 Nous proposons ici d'appliquer le MVC tel qu'il est présenté dans les
 transparents, donc appliquer le découpage suivant :
 
-* Le modèle définit les données (gestion des utilisateurs, de leurs contacts, ...) et les méthodes qui les
-  manipulent (simuler une rencontre entre utilisateurs, ...). Tout doit être pensé en terme de données
+* Le modèle définit les données (gestion des candidats, de leurs CV, requete entrée par l'utilisateur, ...) et les méthodes qui les
+  manipulent (filtrer les candidats selon, ...). Tout doit être pensé en terme de données
   logiques, indépendamment du rendu graphique, donc aucune dépendance
   vers le toolkit graphique (JavaFX). Le modèle doit pouvoir être
   réutilisable sans aucune modification pour une application en mode
@@ -74,10 +74,10 @@ On vous fournit un package `model` contenant le nécessaire pour gérer
 une liste de candidatures. Réfléchissez aux autres classes dont vous
 allez avoir besoin, par exemple :
 
-* Pour représenter la requete en cours (au départ une liste de
-  compétences, mais on peut imaginer des requetes bien plus complexes
+* Pour représenter la requête en cours (au départ une liste de
+  compétences, mais on peut imaginer des requêtes bien plus complexes
   par exemple pour prendre en compte l'expérience professionnelle).
-  Dès que la requete devient non-triviale, il peut être nécessaire de
+  Dès que la requête devient non-triviale, il peut être nécessaire de
   la découper, par exemple via le pattern
   [Composite](https://en.wikipedia.org/wiki/Composite_pattern).
 
