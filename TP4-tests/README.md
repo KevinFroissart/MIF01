@@ -1,4 +1,4 @@
-# TP4 - tests
+﻿# TP4 - tests
 
 ## Objectif
 
@@ -150,12 +150,13 @@ Créez maintenant une classe `ICharManipulator`, pour l'instant vide :
 ```java
 package fr.univ_lyon1.info.m1.tp_test;
 
-public CharManipulator implements ICharManipulator {
+public class CharManipulator implements ICharManipulator {
 
 }
 ```
 
-Votre IDE devrait lever une erreur et vous proposer quelque chose comme « Add unimplemented method » (placer le curseur sur le nom de la classe, puis <kbd>Control</kbd>+<kbd>.</kbd> sous VSCode ou <kbd>Control</kbd>+<kbd>1</kbd> sous Eclipse), qui va générer des squelettes de méthodes pour vous. La vie est trop courte pour écrire tout ça soi-même.
+Votre IDE devrait lever une erreur et vous proposer quelque chose comme « Add unimplemented method » (placer le curseur sur le nom de la classe, puis <kbd>Control</kbd>+<kbd>.</kbd> sous VSCode, <kbd>Control</kbd>+<kbd>1</kbd> sous Eclipse, click droit sur les lignes rouges → generate → implement methods ou bien <kbd>Control</kbd>+<kbd>I</kbd>), qui va générer des squelettes de méthodes pour vous.
+La vie est trop courte pour écrire tout ça soi-même.
 
 Laissez le corps des méthodes vides (juste un `return null;`) pour l’instant, vous les implémenterez après avoir écrit les tests.
 
@@ -168,7 +169,8 @@ l'utilisateur) : du code qui teste du code.
 Vous pouvez créer la classe de test soit à la
 main, soit en vous laissant guider par votre IDE (exemple sous
 Eclipse : clic droit sur le projet → « New » → « Other... » →
-« JUnit test case »). Vous devez obtenir une classe
+« JUnit test case »). Sous Intellij, pour créer la classe de test rapidement : créer la classe java CharManipulatorTest, dans le corps faire alt + inser → test method → version de Junit souhaité. 
+Vous devez obtenir une classe
 `CharManipulatorTest` dans `src/test/java` (et non `src/main/java` !)
 qui :
 

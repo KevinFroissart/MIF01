@@ -1,6 +1,26 @@
 Ce fichier contiendra les nouvelles du cours. Un mail sera envoyé quand le fichier est mis à jour.
 
-# Mise à jour de checkstyle.xml et quelques corrections dans le code Java
+# 17/09/2021 : Nouvelles du cours
+
+Quelques informations importantes :
+
+* Certains étudiants n'ont pas appliqué la mise à jour de checkstyle.xml du 10/09/2021 (cf. https://forge.univ-lyon1.fr/matthieu.moy/mif01-2021/-/blob/master/NEWS.md#10092021-mise-à-jour-de-checkstylexml-et-quelques-corrections-dans-le-code-java-checkstyle). Il est important que vous le fassiez, car la notation se fera sur les warnings trouvés avec la nouvelle configuration. Si vous avez un doute, récupérez ma version brutalement :
+
+```
+git fetch moy
+git restore --source moy/master cv-search/src/main/config/checkstyle.xml
+
+```
+
+puis faites un commit pour enregistrer vos changements.
+
+* Les transparents de Sandrine Gouraud sont en ligne : http://matthieu-moy.fr/cours/mif01/SandrineGouraud_16092021.pdf
+
+* J'ai ajouté quelques précisions sur Git et les fichiers générés, car beaucoup d'entre vous avaient fait l'erreur d'ajouter des fichiers générés à Git (là aussi, attention c'est un point pris en compte dans la note) : https://forge.univ-lyon1.fr/matthieu.moy/mif01-2021/-/tree/master/TP2-outils#suppression-éventuelle-des-fichiers-qui-nauraient-jamais-du-être-là
+
+* Il n'y a quasiment aucune question sur le tchat [mif01-2021](https://go.rocket.chat/invite?host=chat-info.univ-lyon1.fr&path=invite%2Fi5Lsmn). Soit le cours est trop facile, soit c'est vous qui faites trop les timides. Posez-vos questions ! Aidez-nous à vous aider !
+
+# 10/09/2021 : Mise à jour de checkstyle.xml et quelques corrections dans le code Java
 
 Le fichier `checkstyle.xml` que je fournissais n'était pas compatible avec la
 dernière version du plugin checkstyle pour IntelliJ. J'ai mis à jour le fichier
@@ -25,7 +45,7 @@ git pull moy master
 Si vous ne pouvez pas utiliser cette solution, allez récupérer le fichier
 `checkstyle.xml` directement dans le dépôt du cours.
 
-# 0/09/2021 (quater) : visio pour le TD1
+# 8/09/2021 (quater) : visio pour le TD1
 
 Certains étudiants ne peuvent pas suivre les cours en présentiel. Pour le TD1, je vous proposerai une visio en co-modal (je serai en salle de TD avec des étudiants). Les infos de connexion de la visio sont sur la page du cours (README.md, dans la section du TD correspondant).
 
