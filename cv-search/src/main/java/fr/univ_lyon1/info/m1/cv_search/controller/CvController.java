@@ -17,7 +17,7 @@ public final class CvController {
 
     /**
      * Adds a skill to the skillList.
-     * @param skill
+     * @param skill The skill to be added
      */
     public void addSkill(String skill) {
         if (!skill.equals("")) {
@@ -27,7 +27,7 @@ public final class CvController {
 
     /**
      * Removes a skill of the skillList.
-     * @param skill
+     * @param skill The skill to be removed
      */
     public void removeSkill(String skill) {
         skillList.removeSkill(skill);
@@ -36,7 +36,7 @@ public final class CvController {
     /**
      * Selects applicants within a list depending on a set of skills and a filter strategy.
      * @param strategy
-     * @return ths list of selected applicants.
+     * @return the list of selected applicants.
      */
     public ApplicantList selectApplicant(FilterStrategy strategy) {
         ApplicantList listApplicants = new ApplicantListBuilder(new File(".")).build();

@@ -1,11 +1,14 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Observable;
 
-public class SkillList extends Observable implements Iterable<String> {
+public class SkillList implements Iterable<String> {
+
+    private PropertyChangeSupport propertyChangeSupport;
 
     private List<String> skillList = new ArrayList<>();
 
@@ -13,26 +16,44 @@ public class SkillList extends Observable implements Iterable<String> {
      * Calls the extended Observable constructor.
      */
     public SkillList() {
-        super();
+        propertyChangeSupport = new PropertyChangeSupport(this);
+    }
+
+    /**
+     * Add a PropertyChangeListener to the listener list.
+     * @param propertyChangeListener The PropertyChangeListener to be added
+     */
+    public void addPropertyChangeListener(PropertyChangeListener propertyChangeListener) {
+        propertyChangeSupport.addPropertyChangeListener(propertyChangeListener);
+    }
+
+    /**
+     * Remove a PropertyChangeListener from the listener list.
+     * @param propertyChangeListener The PropertyChangeListener to be removed
+     */
+    public void removePropertyChangeListener(PropertyChangeListener propertyChangeListener) {
+        propertyChangeSupport.removePropertyChangeListener(propertyChangeListener);
     }
 
     /**
      * Adds a skill to the skill list.
-     * @param skill the skill
+     * @param skill The skill skill to be added
      */
     public void addSkill(String skill) {
+        List<String> oldSkillList = new ArrayList<>(skillList);
         skillList.add(skill);
-        customNotify();
+        propertyChangeSupport.firePropertyChange("skillList", oldSkillList, this.skillList);
     }
 
     /**
      * Removes a skill from the skill list.
-     * @param skill the skill
+     * @param skill The skill to be removed
      * @return a boolean depending on the method's success
      */
     public boolean removeSkill(String skill) {
+        List<String> oldSkillList =  new ArrayList<>(skillList);
         if (skillList.remove(skill)) {
-            customNotify();
+            propertyChangeSupport.firePropertyChange("skillList", oldSkillList, this.skillList);
             return true;
         }
         return false;
@@ -40,23 +61,16 @@ public class SkillList extends Observable implements Iterable<String> {
 
     /**
      * Returns the skill list size.
-     * @return the size
+     * @return The size of the list
      */
     public int size() {
         return skillList.size();
     }
 
-    /**
-     * Notifies observers observing this class.
-     */
-    public void customNotify() {
-        setChanged();
-        notifyObservers();
-    }
 
     /**
      * Iterator for the skill list.
-     * @return the iterator
+     * @return The iterator
      */
     @Override
     public Iterator<String> iterator() {
@@ -65,7 +79,7 @@ public class SkillList extends Observable implements Iterable<String> {
 
     /**
      * Returns a string of the list content.
-     * @return a string
+     * @return The list content
      */
     @Override
     public String toString() {
