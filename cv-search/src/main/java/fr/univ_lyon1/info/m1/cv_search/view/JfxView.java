@@ -1,9 +1,9 @@
 package fr.univ_lyon1.info.m1.cv_search.view;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 import fr.univ_lyon1.info.m1.cv_search.controller.CvController;
 import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
@@ -28,8 +28,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class JfxView implements Observer {
-    private SkillList skillList;
+public class JfxView implements PropertyChangeListener {
 
     private CvController cvController;
 
@@ -41,8 +40,8 @@ public class JfxView implements Observer {
      * Create the main view of the application.
      */
     public JfxView(Stage stage, int width, int height) {
-        this.skillList = new SkillList();
-        skillList.addObserver(this);
+        SkillList skillList = new SkillList();
+        skillList.addPropertyChangeListener(this);
 
         this.cvController = new CvController(skillList);
 
@@ -82,7 +81,7 @@ public class JfxView implements Observer {
         newSkillBox.setSpacing(10);
 
         EventHandler<ActionEvent> skillHandler = event -> {
-            cvController.addSkill(textField.getText().strip());
+            cvController.addSkill(textField.getText().trim());
             textField.setText("");
             textField.requestFocus();
         };
@@ -148,7 +147,7 @@ public class JfxView implements Observer {
     /**
      * Updates the skillWidget.
      */
-    private void updateSkillWidget() {
+    private void updateSkillWidget(List<String> skillList) {
         searchSkillsBox.getChildren().clear();
 
         for (String skill : skillList) {
@@ -168,7 +167,13 @@ public class JfxView implements Observer {
     }
 
     @Override
-    public void update(Observable observable, Object object) {
-        updateSkillWidget();
+    public void propertyChange(PropertyChangeEvent evt) {
+        switch (evt.getPropertyName()) {
+            case "skillList":
+                updateSkillWidget((List<String>) evt.getNewValue());
+                break;
+            default: break;
+        }
+
     }
 }
