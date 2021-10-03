@@ -8,10 +8,9 @@ import java.util.List;
 import fr.univ_lyon1.info.m1.cv_search.controller.CvController;
 import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
-import fr.univ_lyon1.info.m1.cv_search.model.FilterAverageFifty;
-import fr.univ_lyon1.info.m1.cv_search.model.FilterGEFifty;
-import fr.univ_lyon1.info.m1.cv_search.model.FilterGESixty;
-import fr.univ_lyon1.info.m1.cv_search.model.FilterLEFifty;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterAverage;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterGreaterEqual;
+import fr.univ_lyon1.info.m1.cv_search.model.FilterLesserEqual;
 import fr.univ_lyon1.info.m1.cv_search.model.FilterStrategy;
 
 import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
@@ -131,10 +130,10 @@ public class JfxView implements PropertyChangeListener {
         ComboBox comboBox = new ComboBox();
 
         List<FilterStrategy> strategyList = new ArrayList<>();
-        strategyList.add(new FilterLEFifty());
-        strategyList.add(new FilterGEFifty());
-        strategyList.add(new FilterGESixty());
-        strategyList.add(new FilterAverageFifty());
+        strategyList.add(new FilterLesserEqual(50));
+        strategyList.add(new FilterGreaterEqual(50));
+        strategyList.add(new FilterGreaterEqual(70));
+        strategyList.add(new FilterAverage(50));
 
         comboBox.getItems().addAll(strategyList);
         comboBox.getSelectionModel().selectFirst();

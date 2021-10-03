@@ -1,11 +1,15 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
-public class FilterAverageFifty implements FilterStrategy {
+public class FilterLesserEqual implements FilterStrategy {
 
-    private int level = 50;
+    private int level;
+
+    public FilterLesserEqual(int level) {
+        this.level = level;
+    }
 
     /**
-     * Strategy to select applicants with a set of skill averaging 50.
+     * Strategy to select applicants with a set of skill lesser or equal to 50.
      * @param applicants
      * @param skills
      * @return the selected applicants.
@@ -14,13 +18,14 @@ public class FilterAverageFifty implements FilterStrategy {
     public ApplicantList getApplicants(ApplicantList applicants, SkillList skills) {
         ApplicantList selectedApplicants = new ApplicantList();
         for (Applicant applicant : applicants) {
-            int total = 0;
-            int cpt = 0;
+            boolean selected = true;
             for (String skill : skills) {
-                total += applicant.getSkill(skill);
-                cpt++;
+                if (applicant.getSkill(skill) > level) {
+                    selected = false;
+                    break;
+                }
             }
-            if (total / cpt >= level) {
+            if (selected) {
                 selectedApplicants.add(applicant);
             }
         }
@@ -28,6 +33,6 @@ public class FilterAverageFifty implements FilterStrategy {
     }
 
     public String toString() {
-        return "Average => 50";
+        return "All <= " + level;
     }
 }
