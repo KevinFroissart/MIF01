@@ -26,7 +26,7 @@ public class FilterLesserEqual implements FilterStrategy {
                 }
             }
             if (selected) {
-                selectedApplicants.add(applicant);
+                selectedApplicants.addApplicant(applicant);
             }
         }
         return selectedApplicants;

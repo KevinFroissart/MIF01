@@ -42,7 +42,10 @@ public class JfxView implements PropertyChangeListener {
         SkillList skillList = new SkillList();
         skillList.addPropertyChangeListener(this);
 
-        this.cvController = new CvController(skillList);
+        ApplicantList applicantList = new ApplicantList();
+        applicantList.addPropertyChangeListener(this);
+
+        this.cvController = new CvController(skillList, applicantList);
 
         stage.setTitle("Search for CV");
 
@@ -101,17 +104,14 @@ public class JfxView implements PropertyChangeListener {
      * Create the widget used to trigger the search.
      */
     private Node createSearchWidget() {
-        Button search = new Button("Search");
-        search.setOnAction(event -> {
+        Button searchButton = new Button("Search");
+        searchButton.setOnAction(event -> {
             resultBox.getChildren().clear();
             ComboBox comboBox = (ComboBox) skillLevelBox.getChildren().get(1);
             FilterStrategy strategy = (FilterStrategy) comboBox.getValue();
-            ApplicantList applicantList = cvController.selectApplicant(strategy);
-            for (Applicant applicant : applicantList) {
-                resultBox.getChildren().add(new Label(applicant.getName()));
-            }
+            cvController.selectApplicant(strategy);
         });
-        return search;
+        return searchButton;
     }
 
     /**
@@ -132,7 +132,7 @@ public class JfxView implements PropertyChangeListener {
         List<FilterStrategy> strategyList = new ArrayList<>();
         strategyList.add(new FilterLesserEqual(50));
         strategyList.add(new FilterGreaterEqual(50));
-        strategyList.add(new FilterGreaterEqual(70));
+        strategyList.add(new FilterGreaterEqual(60));
         strategyList.add(new FilterAverage(50));
 
         comboBox.getItems().addAll(strategyList);
@@ -145,23 +145,34 @@ public class JfxView implements PropertyChangeListener {
 
     /**
      * Updates the skillWidget.
+     * @param skillList Contains the
      */
     private void updateSkillWidget(List<String> skillList) {
         searchSkillsBox.getChildren().clear();
 
         for (String skill : skillList) {
-            final HBox box = new HBox();
+            HBox skillBox = new HBox();
 
-            final Button b = new Button("x");
-            final Label labelContact = new Label(skill);
-            b.setOnAction(event ->  cvController.removeSkill(skill));
+            Button removeSkillButton = new Button("x");
+            Label labelContact = new Label(skill);
+            removeSkillButton.setOnAction(event ->  cvController.removeSkill(skill));
 
-            box.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
+            skillBox.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
                 + "-fx-border-width: 1;" + "-fx-border-insets: 5;"
                 + "-fx-border-radius: 5;" + "-fx-border-color: black;");
-            box.setAlignment(Pos.BASELINE_CENTER);
-            box.getChildren().addAll(labelContact, b);
-            searchSkillsBox.getChildren().addAll(box);
+            skillBox.setAlignment(Pos.BASELINE_CENTER);
+            skillBox.getChildren().addAll(labelContact, removeSkillButton);
+            searchSkillsBox.getChildren().addAll(skillBox);
+        }
+    }
+
+    /**
+     * Updates the searchWidget.
+     */
+    private void updateSearchWidget(List<Applicant> applicantList) {
+        resultBox.getChildren().clear();
+        for (Applicant applicant : applicantList) {
+            resultBox.getChildren().add(new Label(applicant.getName()));
         }
     }
 
@@ -170,6 +181,9 @@ public class JfxView implements PropertyChangeListener {
         switch (evt.getPropertyName()) {
             case "skillList":
                 updateSkillWidget((List<String>) evt.getNewValue());
+                break;
+            case "applicantList":
+                updateSearchWidget((List<Applicant>) evt.getNewValue());
                 break;
             default: break;
         }
