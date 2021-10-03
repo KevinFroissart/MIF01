@@ -1,5 +1,6 @@
 package fr.univ_lyon1.info.m1.cv_search.controller;
 
+import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantListBuilder;
 import fr.univ_lyon1.info.m1.cv_search.model.FilterStrategy;
@@ -10,9 +11,11 @@ import java.io.File;
 public final class CvController {
 
     private SkillList skillList;
+    private ApplicantList applicantList;
 
-    public CvController(SkillList skillList) {
+    public CvController(SkillList skillList, ApplicantList applicantList) {
         this.skillList = skillList;
+        this.applicantList = applicantList;
     }
 
     /**
@@ -34,15 +37,40 @@ public final class CvController {
     }
 
     /**
-     * Selects applicants within a list depending on a set of skills and a filter strategy.
-     * @param strategy
-     * @return the list of selected applicants.
+     * Adds a skill to the skillList.
+     * @param applicant The {@link fr.univ_lyon1.info.m1.cv_search.model.Applicant} to be added
      */
-    public ApplicantList selectApplicant(FilterStrategy strategy) {
-        ApplicantList listApplicants = new ApplicantListBuilder(new File(".")).build();
-        return skillList.size() > 0
-                ? strategy.getApplicants(listApplicants, skillList)
-                : new ApplicantList();
+    public void addApplicant(Applicant applicant) {
+        if (applicant != null) {
+            applicantList.addApplicant(applicant);
+        }
     }
 
+    /**
+     * Removes a skill of the skillList.
+     * @param applicant The {@link Applicant} to be removed
+     */
+    public void removeApplicant(Applicant applicant) {
+        applicantList.removeApplicant(applicant);
+    }
+
+    /**
+     * Clears the {@link ApplicantList}.
+     */
+    public void clearApplicants() {
+        applicantList.clear();
+    }
+
+    /**
+     * Selects applicants within a list depending on a set of skills and a filter strategy.
+     * @param strategy The {@link FilterStrategy}
+     */
+    public void selectApplicant(FilterStrategy strategy) {
+        clearApplicants();
+        ApplicantList listApplicants = new ApplicantListBuilder(new File(".")).build();
+        ApplicantList applicants = strategy.getApplicants(listApplicants, skillList);
+        for (Applicant applicant : applicants) {
+            addApplicant(applicant);
+        }
+    }
 }

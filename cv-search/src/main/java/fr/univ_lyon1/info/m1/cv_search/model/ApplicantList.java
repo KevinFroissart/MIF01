@@ -1,44 +1,35 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-public class ApplicantList implements Iterable<Applicant> {
-    private List<Applicant> list = new ArrayList<Applicant>();
-    
-    /** 
-     * Add applicant to applicant list.
-     * @param a the applicant.
-     */
-    void add(Applicant a) {
-        list.add(a);
-    }
-    
-    /** 
-     * Returns the applicant list size.
-     * @return the size.
-     */
-    public int size() {
-        return list.size();
+public class ApplicantList extends ListObservable<Applicant> {
+
+    public ApplicantList() {
+        super();
     }
 
-    /** 
-     * Iterator for the applicant list.
-     * @return the iterator.
+    /**
+     * Adds an applicant to the skill list.
+     * @param applicant The {@link Applicant} to be added
      */
-    @Override
-    public Iterator<Applicant> iterator() {
-        return list.iterator();
+    public void addApplicant(Applicant applicant) {
+        List<Applicant> oldList = new ArrayList<>(getList());
+        getList().add(applicant);
+        getPropertyChangeSupport().firePropertyChange("applicantList", oldList, getList());
     }
 
-    /** Clear the list of applicants. */
-    public void clear() {
-        list.clear();
-    }
-
-    /** Sets the content of the applicant list. */
-    public void setList(ApplicantList list) {
-        this.list = list.list;
+    /**
+     * Removes an applicant from the list.
+     * @param applicant The {@link Applicant} to be removed
+     * @return a boolean depending on the method's success
+     */
+    public boolean removeApplicant(Applicant applicant) {
+        List<Applicant> oldList =  new ArrayList<>(getList());
+        if (getList().remove(applicant)) {
+            getPropertyChangeSupport().firePropertyChange("applicantList", oldList, getList());
+            return true;
+        }
+        return false;
     }
 }

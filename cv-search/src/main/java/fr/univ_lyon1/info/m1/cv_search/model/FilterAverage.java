@@ -25,7 +25,7 @@ public class FilterAverage implements FilterStrategy {
                 cpt++;
             }
             if (total / cpt >= level) {
-                selectedApplicants.add(applicant);
+                selectedApplicants.addApplicant(applicant);
             }
         }
         return selectedApplicants;
