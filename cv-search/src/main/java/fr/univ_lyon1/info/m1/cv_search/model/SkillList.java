@@ -13,7 +13,7 @@ public class SkillList implements Iterable<String> {
     private List<String> skillList = new ArrayList<>();
 
     /**
-     * Calls the extended Observable constructor.P
+     * Calls the extended Observable constructor.
      *
      */
     public SkillList() {
