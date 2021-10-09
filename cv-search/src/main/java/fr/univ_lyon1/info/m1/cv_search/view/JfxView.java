@@ -2,6 +2,7 @@ package fr.univ_lyon1.info.m1.cv_search.view;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -171,8 +172,13 @@ public class JfxView implements PropertyChangeListener {
      */
     private void updateSearchWidget(List<Applicant> applicantList) {
         resultBox.getChildren().clear();
+        System.out.println("3 " + applicantList.toString());
         for (Applicant applicant : applicantList) {
-            resultBox.getChildren().add(new Label(applicant.getName()));
+            resultBox.getChildren().add(new Label(
+                    applicant.getName()
+                    + " : Note moyenne de "
+                    + new DecimalFormat("#.##").format(applicant.getAverage())
+            ));
         }
     }
 
