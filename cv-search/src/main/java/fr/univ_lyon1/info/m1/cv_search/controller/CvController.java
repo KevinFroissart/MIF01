@@ -19,7 +19,23 @@ public final class CvController {
     }
 
     /**
-     * Adds a skill to the skillList.
+     * Returns the current {@link SkillList}.
+     * @return the {@link SkillList} to be returned
+     */
+    public SkillList getSkillList() {
+        return skillList;
+    }
+
+    /**
+     * Returns the current {@link ApplicantList}.
+     * @return the {@link ApplicantList} to be returned
+     */
+    public ApplicantList getApplicantList() {
+        return applicantList;
+    }
+
+    /**
+     * Adds a skill to the {@link SkillList}.
      * @param skill The skill to be added
      */
     public void addSkill(String skill) {
@@ -29,7 +45,7 @@ public final class CvController {
     }
 
     /**
-     * Removes a skill of the skillList.
+     * Removes a skill of the {@link SkillList}.
      * @param skill The skill to be removed
      */
     public void removeSkill(String skill) {
@@ -37,8 +53,8 @@ public final class CvController {
     }
 
     /**
-     * Adds a skill to the skillList.
-     * @param applicant The {@link fr.univ_lyon1.info.m1.cv_search.model.Applicant} to be added
+     * Adds a skill to the {@link SkillList}.
+     * @param applicant The {@link Applicant} to be added
      */
     public void addApplicant(Applicant applicant) {
         if (applicant != null) {
@@ -47,7 +63,7 @@ public final class CvController {
     }
 
     /**
-     * Removes a skill of the skillList.
+     * Removes a skill of the {@link SkillList}.
      * @param applicant The {@link Applicant} to be removed
      */
     public void removeApplicant(Applicant applicant) {
@@ -67,10 +83,12 @@ public final class CvController {
      */
     public void selectApplicant(FilterStrategy strategy) {
         clearApplicants();
-        ApplicantList listApplicants = new ApplicantListBuilder(new File(".")).build();
-        ApplicantList applicants = strategy.getApplicants(listApplicants, skillList);
-        for (Applicant applicant : applicants) {
-            addApplicant(applicant);
+        if (skillList.size() > 0) {
+            ApplicantList listApplicants = new ApplicantListBuilder(new File(".")).build();
+            ApplicantList applicants = strategy.getApplicants(listApplicants, skillList);
+            for (Applicant applicant : applicants) {
+                addApplicant(applicant);
+            }
         }
     }
 }

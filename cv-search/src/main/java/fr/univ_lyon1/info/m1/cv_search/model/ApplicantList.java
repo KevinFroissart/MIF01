@@ -33,4 +33,14 @@ public class ApplicantList extends ListObservable<Applicant> {
         Collections.sort(getList(), new ApplicantComparator());
         getPropertyChangeSupport().firePropertyChange("applicantList", oldList, getList());
     }
+
+    /**
+     * Clears the {@link Applicant} from the list and fires changes to the view.
+     */
+    @Override
+    public void clear() {
+        List<Applicant> oldList =  new ArrayList<>(getList());
+        getList().clear();
+        getPropertyChangeSupport().firePropertyChange("applicantList", oldList, getList());
+    }
 }

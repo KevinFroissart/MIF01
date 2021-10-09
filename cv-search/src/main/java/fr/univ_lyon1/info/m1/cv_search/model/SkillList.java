@@ -22,14 +22,10 @@ public class SkillList extends ListObservable<String> {
     /**
      * Removes a skill from the skill list.
      * @param skill The skill to be removed
-     * @return a boolean depending on the method's success
      */
-    public boolean removeSkill(String skill) {
+    public void removeSkill(String skill) {
         List<String> oldSkillList =  new ArrayList<>(getList());
-        if (getList().remove(skill)) {
-            getPropertyChangeSupport().firePropertyChange("skillList", oldSkillList, getList());
-            return true;
-        }
-        return false;
+        getList().remove(skill);
+        getPropertyChangeSupport().firePropertyChange("skillList", oldSkillList, getList());
     }
 }
