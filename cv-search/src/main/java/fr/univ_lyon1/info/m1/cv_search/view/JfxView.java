@@ -8,13 +8,11 @@ import java.util.List;
 
 import fr.univ_lyon1.info.m1.cv_search.controller.CvController;
 import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
-import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
 import fr.univ_lyon1.info.m1.cv_search.model.FilterAverage;
 import fr.univ_lyon1.info.m1.cv_search.model.FilterGreaterEqual;
 import fr.univ_lyon1.info.m1.cv_search.model.FilterLesserEqual;
 import fr.univ_lyon1.info.m1.cv_search.model.FilterStrategy;
 
-import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -39,14 +37,11 @@ public class JfxView implements PropertyChangeListener {
     /**
      * Create the main view of the application.
      */
-    public JfxView(Stage stage, int width, int height) {
-        SkillList skillList = new SkillList();
-        skillList.addPropertyChangeListener(this);
+    public JfxView(CvController cvController, Stage stage, int width, int height) {
+        this.cvController = cvController;
 
-        ApplicantList applicantList = new ApplicantList();
-        applicantList.addPropertyChangeListener(this);
-
-        this.cvController = new CvController(skillList, applicantList);
+        cvController.getSkillList().addPropertyChangeListener(this);
+        cvController.getApplicantList().addPropertyChangeListener(this);
 
         stage.setTitle("Search for CV");
 
@@ -168,17 +163,27 @@ public class JfxView implements PropertyChangeListener {
     }
 
     /**
-     * Updates the searchWidget.
+     * Updates the list of applicants returned by the search strategy.
      */
-    private void updateSearchWidget(List<Applicant> applicantList) {
+    private void updateApplicantSearchResults(List<Applicant> applicantList) {
         resultBox.getChildren().clear();
-        System.out.println("3 " + applicantList.toString());
         for (Applicant applicant : applicantList) {
-            resultBox.getChildren().add(new Label(
+
+            HBox applicantCard = new HBox();
+            Button removeCardButton = new Button("x");
+            Label applicantLabel = new Label(
                     applicant.getName()
-                    + " : Note moyenne de "
-                    + new DecimalFormat("#.##").format(applicant.getAverage())
-            ));
+                            + " : Note moyenne de "
+                            + new DecimalFormat("#.##").format(applicant.getAverage())
+            );
+            removeCardButton.setOnAction(event ->  cvController.removeApplicant(applicant));
+
+            applicantCard.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
+                    + "-fx-border-width: 1;" + "-fx-border-insets: 5;"
+                    + "-fx-border-radius: 5;" + "-fx-border-color: black;");
+            applicantCard.setAlignment(Pos.BASELINE_CENTER);
+            applicantCard.getChildren().addAll(applicantLabel, removeCardButton);
+            resultBox.getChildren().add(applicantCard);
         }
     }
 
@@ -189,10 +194,9 @@ public class JfxView implements PropertyChangeListener {
                 updateSkillWidget((List<String>) evt.getNewValue());
                 break;
             case "applicantList":
-                updateSearchWidget((List<Applicant>) evt.getNewValue());
+                updateApplicantSearchResults((List<Applicant>) evt.getNewValue());
                 break;
             default: break;
         }
-
     }
 }
