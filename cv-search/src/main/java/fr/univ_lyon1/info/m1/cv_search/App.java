@@ -15,6 +15,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         new JfxView(stage, 600, 600);
+        new JfxView(new Stage(), 600, 600);
     }
 
     /**

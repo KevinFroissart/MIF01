@@ -1,8 +1,8 @@
 name: Foo Bar
 skills:
   c: 40
-  c++: 70
-  java: 50
+  c++: 90
+  java: 55
 experience:
   UCBL:
     start: 2004
