@@ -9,7 +9,7 @@ public class Applicant {
     private Double average;
 
     /** 
-     * Returns the applicant's skill level.
+     * Return the applicant's skill level.
      * @param string the skill name.
      * @return int the skill level.
      */
@@ -18,7 +18,7 @@ public class Applicant {
     }
 
     /** 
-     * Sets the applicant's skill.
+     * Set the applicant's skill.
      * @param string the skill.
      * @param value the skill level.
      */
@@ -27,7 +27,7 @@ public class Applicant {
     }
     
     /** 
-     * Returns the applicant's name.
+     * Return the applicant's name.
      * @return String the applicant's name.
      */
     public String getName() {
@@ -35,7 +35,7 @@ public class Applicant {
     }
     
     /** 
-     * Sets the applicant's name.
+     * Set the applicant's name.
      * @param name the applicant's name.
      */
     public void setName(String name) {
@@ -43,7 +43,7 @@ public class Applicant {
     }
 
     /**
-     * Returns the applicant's average mark.
+     * Return the applicant's average mark.
      * @return average the mark to be returned.
      */
     public Double getAverage() {
@@ -51,7 +51,7 @@ public class Applicant {
     }
 
     /**
-     * Sets the applicant's average mark.
+     * Set the applicant's average mark.
      * @param average the mark to be set.
      */
     public void setAverage(Double average) {

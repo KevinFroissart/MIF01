@@ -5,7 +5,7 @@ import java.util.Comparator;
 public class ApplicantComparator implements Comparator<Applicant> {
 
 	/**
-	 * Compares two applicants based on their average score.
+	 * Compare two applicants based on their average score.
 	 * @param applicant1 The first {@link Applicant} to be compared
 	 * @param applicant2 The second {@link Applicant} to be compared
 	 * @return a negative integer, zero, or a positive integer

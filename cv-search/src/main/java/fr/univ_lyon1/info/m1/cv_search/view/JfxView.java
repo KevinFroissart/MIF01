@@ -140,7 +140,7 @@ public class JfxView implements PropertyChangeListener {
     }
 
     /**
-     * Updates the skillWidget.
+     * Update the skillWidget.
      * @param skillList Contains the
      */
     private void updateSkillWidget(List<String> skillList) {
@@ -163,7 +163,7 @@ public class JfxView implements PropertyChangeListener {
     }
 
     /**
-     * Updates the list of applicants returned by the search strategy.
+     * Update the list of applicants returned by the search strategy.
      */
     private void updateApplicantSearchResults(List<Applicant> applicantList) {
         resultBox.getChildren().clear();
