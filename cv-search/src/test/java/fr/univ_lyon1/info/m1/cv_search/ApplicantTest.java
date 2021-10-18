@@ -16,6 +16,8 @@ public class ApplicantTest {
 
     @Test
     public void testReadApplicant() {
+        System.out.println("--------------ApplicantTest---------------");
+
         // Given
         ApplicantBuilder builder = new ApplicantBuilder("applicant1.yaml");
 
@@ -24,7 +26,11 @@ public class ApplicantTest {
 
         // Then
         assertThat(70, is(a.getSkill("c++")));
+        a.setSkill("c++", 60);
+        assertThat(60, is(a.getSkill("c++")));
         assertThat("John Smith", is(a.getName()));
+        a.setName("Jean");
+        assertThat("Jean", is(a.getName()));
         assertThat(2 + 2, is(4));
     }
 
