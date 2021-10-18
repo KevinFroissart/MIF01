@@ -63,6 +63,14 @@ public class ListObservable<T> implements Iterable<T> {
         return list;
     }
 
+    /**
+     * Sets the current list to a list passed in param.
+     * @param list
+     */
+    public void setList(List<T> list) {
+        this.list = list;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return list.iterator();
