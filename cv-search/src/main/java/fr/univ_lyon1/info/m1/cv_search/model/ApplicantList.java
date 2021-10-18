@@ -11,8 +11,8 @@ public class ApplicantList extends ListObservable<Applicant> {
     }
 
     /**
-     * Adds an applicant to the skill list.
-     * Sorts the list and fires the changes to the view.
+     * Add an applicant to the skill list.
+     * Sort the list and fires the changes to the view.
      * @param applicant The {@link Applicant} to be added
      */
     public void addApplicant(Applicant applicant) {
@@ -23,8 +23,8 @@ public class ApplicantList extends ListObservable<Applicant> {
     }
 
     /**
-     * Removes an applicant from the list.
-     * Sorts the list and fires the changes to the view.
+     * Remove an applicant from the list.
+     * Sort the list and fires the changes to the view.
      * @param applicant The {@link Applicant} to be removed
      */
     public void removeApplicant(Applicant applicant) {
@@ -35,7 +35,7 @@ public class ApplicantList extends ListObservable<Applicant> {
     }
 
     /**
-     * Clears the {@link Applicant} from the list and fires changes to the view.
+     * Clear the {@link Applicant} from the list and fires changes to the view.
      */
     @Override
     public void clear() {

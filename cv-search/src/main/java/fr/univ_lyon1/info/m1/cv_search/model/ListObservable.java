@@ -33,7 +33,7 @@ public class ListObservable<T> implements Iterable<T> {
     }
 
     /**
-     * Returns the list size.
+     * Return the list size.
      * @return The size of the list
      */
     public int size() {
@@ -41,14 +41,14 @@ public class ListObservable<T> implements Iterable<T> {
     }
 
     /**
-     * Clears the list.
+     * Clear the list.
      */
     public void clear() {
         list.clear();
     }
 
     /**
-     * Returns the {@link PropertyChangeSupport}.
+     * Return the {@link PropertyChangeSupport}.
      * @return
      */
     public PropertyChangeSupport getPropertyChangeSupport() {
@@ -56,7 +56,7 @@ public class ListObservable<T> implements Iterable<T> {
     }
 
     /**
-     * Returns the list.
+     * Return the list.
      * @return
      */
     public List<T> getList() {
@@ -64,7 +64,7 @@ public class ListObservable<T> implements Iterable<T> {
     }
 
     /**
-     * Sets the current list to a list passed in param.
+     * Set the current list to a list passed in param.
      * @param list
      */
     public void setList(List<T> list) {

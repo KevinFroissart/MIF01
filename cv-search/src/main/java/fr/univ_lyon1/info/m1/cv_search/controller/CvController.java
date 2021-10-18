@@ -19,7 +19,7 @@ public final class CvController {
     }
 
     /**
-     * Returns the current {@link SkillList}.
+     * Return the current {@link SkillList}.
      * @return the {@link SkillList} to be returned
      */
     public SkillList getSkillList() {
@@ -27,7 +27,7 @@ public final class CvController {
     }
 
     /**
-     * Returns the current {@link ApplicantList}.
+     * Return the current {@link ApplicantList}.
      * @return the {@link ApplicantList} to be returned
      */
     public ApplicantList getApplicantList() {
@@ -35,7 +35,7 @@ public final class CvController {
     }
 
     /**
-     * Adds a skill to the {@link SkillList}.
+     * Add a skill to the {@link SkillList}.
      * @param skill The skill to be added
      */
     public void addSkill(String skill) {
@@ -45,7 +45,7 @@ public final class CvController {
     }
 
     /**
-     * Removes a skill of the {@link SkillList}.
+     * Remove a skill of the {@link SkillList}.
      * @param skill The skill to be removed
      */
     public void removeSkill(String skill) {
@@ -53,7 +53,7 @@ public final class CvController {
     }
 
     /**
-     * Adds a skill to the {@link SkillList}.
+     * Add a skill to the {@link SkillList}.
      * @param applicant The {@link Applicant} to be added
      */
     public void addApplicant(Applicant applicant) {
@@ -63,7 +63,7 @@ public final class CvController {
     }
 
     /**
-     * Removes a skill of the {@link SkillList}.
+     * Remove a skill of the {@link SkillList}.
      * @param applicant The {@link Applicant} to be removed
      */
     public void removeApplicant(Applicant applicant) {
@@ -71,14 +71,14 @@ public final class CvController {
     }
 
     /**
-     * Clears the {@link ApplicantList}.
+     * Clear the {@link ApplicantList}.
      */
     public void clearApplicants() {
         applicantList.clear();
     }
 
     /**
-     * Selects applicants within a list depending on a set of skills and a filter strategy.
+     * Select applicants within a list depending on a set of skills and a filter strategy.
      * @param strategy The {@link FilterStrategy}
      */
     public void selectApplicant(FilterStrategy strategy) {

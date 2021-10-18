@@ -10,7 +10,7 @@ public class SkillList extends ListObservable<String> {
     }
 
     /**
-     * Adds a skill to the skill list.
+     * Add a skill to the skill list.
      * @param skill The skill to be added
      */
     public void addSkill(String skill) {
@@ -20,7 +20,7 @@ public class SkillList extends ListObservable<String> {
     }
 
     /**
-     * Removes a skill from the skill list.
+     * Remove a skill from the skill list.
      * @param skill The skill to be removed
      */
     public void removeSkill(String skill) {
