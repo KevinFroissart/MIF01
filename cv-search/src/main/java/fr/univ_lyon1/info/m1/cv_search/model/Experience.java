@@ -55,7 +55,7 @@ public class Experience {
     }
 
     /**
-     * Set the starting date
+     * Set the starting date.
      * @param start the date to be set.
      */
     public void setStart(int start) {
@@ -80,11 +80,7 @@ public class Experience {
 
     @Override
     public String toString() {
-        return "Experience{" +
-                "company='" + company + '\'' +
-                ", start=" + start +
-                ", stop=" + end +
-                ", keyword=" + keywords +
-                '}';
+        return "Experience{company='" + company + "\', start=" + start
+                + ", stop=" + end + ", keyword=" + keywords + '}';
     }
 }

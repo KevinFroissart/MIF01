@@ -43,9 +43,10 @@ public class ApplicantBuilder {
         Map<String, Integer> skills = (Map<String, Integer>) map.get("skills");
 
         @SuppressWarnings("unchecked")
-        Map<String, Map<String, Object>> experiences = (Map<String, Map<String, Object>>) map.get("experience");
+        Map<String, Map<String, Object>> experiences = (Map<String, Map<String, Object>>)
+                map.get("experience");
 
-        for(String company : experiences.keySet()) {
+        for (String company : experiences.keySet()) {
             Experience experience = new Experience();
             experience.setCompany(company);
             experience.setStart(Integer.parseInt(experiences.get(company).get("start").toString()));

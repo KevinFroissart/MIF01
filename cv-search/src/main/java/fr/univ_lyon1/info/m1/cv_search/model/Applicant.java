@@ -45,7 +45,7 @@ public class Applicant {
     }
 
     /**
-     * Set the applicant's {@link Experience}
+     * Set the applicant's {@link Experience}.
      * @param experiences a list of {@link Experience}.
      */
     public void setExperiences(List<Experience> experiences) {
