@@ -19,12 +19,12 @@ public class FilterGreaterEqual implements FilterStrategy {
      * @return the selected applicants.
      */
     @Override
-    public ApplicantList getApplicants(ApplicantList applicants, SkillList skills) {
+    public ApplicantList getApplicants(ApplicantList applicants, SkillList... skills) {
         ApplicantList selectedApplicants = new ApplicantList();
         for (Applicant applicant : applicants) {
             boolean selected = true;
             List<Integer> marks = new ArrayList<>();
-            for (String skill : skills) {
+            for (String skill : skills[0]) {
                 if (applicant.getSkill(skill) < level) {
                     selected = false;
                     break;
