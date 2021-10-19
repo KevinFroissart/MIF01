@@ -20,11 +20,11 @@ public class FilterAverage implements FilterStrategy {
      * @return the selected applicants.
      */
     @Override
-    public ApplicantList getApplicants(ApplicantList applicants, SkillList skills) {
+    public ApplicantList getApplicants(ApplicantList applicants, SkillList... skills) {
         ApplicantList selectedApplicants = new ApplicantList();
         for (Applicant applicant : applicants) {
             List<Integer> marks = new ArrayList<>();
-            for (String skill : skills) {
+            for (String skill : skills[0]) {
                 marks.add(applicant.getSkill(skill));
             }
             OptionalDouble average = marks.stream().mapToDouble(a -> a).average();
