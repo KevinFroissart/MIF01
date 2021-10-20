@@ -3,15 +3,12 @@ package fr.univ_lyon1.info.m1.cv_search.view;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.univ_lyon1.info.m1.cv_search.controller.CvController;
-import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
-import fr.univ_lyon1.info.m1.cv_search.model.FilterAverage;
-import fr.univ_lyon1.info.m1.cv_search.model.FilterGreaterEqual;
-import fr.univ_lyon1.info.m1.cv_search.model.FilterLesserEqual;
-import fr.univ_lyon1.info.m1.cv_search.model.FilterStrategy;
+import fr.univ_lyon1.info.m1.cv_search.model.applicant.Applicant;
+import fr.univ_lyon1.info.m1.cv_search.model.filter.FilterListSingleton;
+import fr.univ_lyon1.info.m1.cv_search.model.filter.FilterStrategy;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,6 +30,7 @@ public class JfxView implements PropertyChangeListener {
     private HBox searchSkillsBox;
     private VBox resultBox;
     private HBox skillLevelBox;
+    private HBox experienceBox;
 
     /**
      * Create the main view of the application.
@@ -53,8 +51,11 @@ public class JfxView implements PropertyChangeListener {
         Node searchSkillsBox = createCurrentSearchSkillsWidget();
         root.getChildren().add(searchSkillsBox);
 
-        Node skillLevelBox = createComboBoxWidget();
+        Node skillLevelBox = createSkillComboBoxWidget();
         root.getChildren().add(skillLevelBox);
+
+        Node experienceBox = createExperienceComboBoxWidget();
+        root.getChildren().add(experienceBox);
 
         Node search = createSearchWidget();
         root.getChildren().add(search);
@@ -103,9 +104,11 @@ public class JfxView implements PropertyChangeListener {
         Button searchButton = new Button("Search");
         searchButton.setOnAction(event -> {
             resultBox.getChildren().clear();
-            ComboBox comboBox = (ComboBox) skillLevelBox.getChildren().get(1);
-            FilterStrategy strategy = (FilterStrategy) comboBox.getValue();
-            cvController.selectApplicant(strategy);
+            ComboBox skillComboBox = (ComboBox) skillLevelBox.getChildren().get(1);
+            ComboBox experienceComboBox = (ComboBox) experienceBox.getChildren().get(1);
+            FilterStrategy skillStrategy = (FilterStrategy) skillComboBox.getValue();
+            FilterStrategy experienceStrategy = (FilterStrategy) experienceComboBox.getValue();
+            cvController.selectApplicant(skillStrategy, experienceStrategy);
         });
         return searchButton;
     }
@@ -121,22 +124,29 @@ public class JfxView implements PropertyChangeListener {
     /**
      * Create the widget showing the dropdown list of skill research strategies.
      */
-    private Node createComboBoxWidget() {
+    private Node createSkillComboBoxWidget() {
         skillLevelBox = new HBox();
         ComboBox comboBox = new ComboBox();
-
-        List<FilterStrategy> strategyList = new ArrayList<>();
-        strategyList.add(new FilterLesserEqual(50));
-        strategyList.add(new FilterGreaterEqual(50));
-        strategyList.add(new FilterGreaterEqual(60));
-        strategyList.add(new FilterAverage(50));
-
-        comboBox.getItems().addAll(strategyList);
+        comboBox.getItems().addAll(FilterListSingleton.getInstance().getSkillStrategies());
         comboBox.getSelectionModel().selectFirst();
 
         Label skillLevelLabel = new Label("Stategy: ");
         skillLevelBox.getChildren().addAll(skillLevelLabel, comboBox);
         return skillLevelBox;
+    }
+
+    /**
+     * Create the widget showing the dropdown list of skill research strategies.
+     */
+    private Node createExperienceComboBoxWidget() {
+        experienceBox = new HBox();
+        ComboBox comboBox = new ComboBox();
+        comboBox.getItems().addAll(FilterListSingleton.getInstance().getExperienceStragies());
+        comboBox.getSelectionModel().selectFirst();
+
+        Label skillLevelLabel = new Label("Years of experience: ");
+        experienceBox.getChildren().addAll(skillLevelLabel, comboBox);
+        return experienceBox;
     }
 
     /**

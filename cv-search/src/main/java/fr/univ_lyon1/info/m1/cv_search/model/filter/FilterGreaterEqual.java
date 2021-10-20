@@ -1,19 +1,23 @@
-package fr.univ_lyon1.info.m1.cv_search.model;
+package fr.univ_lyon1.info.m1.cv_search.model.filter;
+
+import fr.univ_lyon1.info.m1.cv_search.model.applicant.Applicant;
+import fr.univ_lyon1.info.m1.cv_search.model.applicant.ApplicantList;
+import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilterLesserEqual implements FilterStrategy {
+public class FilterGreaterEqual implements FilterStrategy {
 
     private int level;
 
-    public FilterLesserEqual(int level) {
+    public FilterGreaterEqual(int level) {
         this.level = level;
     }
 
     /**
      * Strategy to select applicants with a set of skill
-     * lesser or equal to an integer specified in the constructor.
+     * greater or equal to an integer specified in the constructor.
      * @param applicants
      * @param skills
      * @return the selected applicants.
@@ -25,7 +29,7 @@ public class FilterLesserEqual implements FilterStrategy {
             boolean selected = true;
             List<Integer> marks = new ArrayList<>();
             for (String skill : skills[0]) {
-                if (applicant.getSkill(skill) > level) {
+                if (applicant.getSkill(skill) < level) {
                     selected = false;
                     break;
                 } else {
@@ -41,6 +45,6 @@ public class FilterLesserEqual implements FilterStrategy {
     }
 
     public String toString() {
-        return "All <= " + level;
+        return "All >= " + level;
     }
 }

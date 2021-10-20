@@ -1,7 +1,7 @@
 package fr.univ_lyon1.info.m1.cv_search;
 
 import fr.univ_lyon1.info.m1.cv_search.controller.CvController;
-import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
+import fr.univ_lyon1.info.m1.cv_search.model.applicant.ApplicantList;
 import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
 import fr.univ_lyon1.info.m1.cv_search.view.JfxView;
 import javafx.application.Application;

@@ -1,4 +1,6 @@
-package fr.univ_lyon1.info.m1.cv_search.model;
+package fr.univ_lyon1.info.m1.cv_search.model.applicant;
+
+import fr.univ_lyon1.info.m1.cv_search.model.Experience;
 
 import java.util.ArrayList;
 import java.util.HashMap;
