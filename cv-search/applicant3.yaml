@@ -1,0 +1,14 @@
+name: John Doe
+skills:
+  c: 60
+  c++: 50
+  java: 55
+experience:
+  IBM:
+    start: 2018
+    end: 2021
+    keywords:
+      - Scheme
+      - c
+      - c++
+      - java

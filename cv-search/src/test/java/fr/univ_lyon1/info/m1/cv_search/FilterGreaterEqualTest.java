@@ -1,9 +1,10 @@
 package fr.univ_lyon1.info.m1.cv_search;
 
 import fr.univ_lyon1.info.m1.cv_search.model.*;
+import fr.univ_lyon1.info.m1.cv_search.model.applicant.Applicant;
+import fr.univ_lyon1.info.m1.cv_search.model.applicant.ApplicantList;
+import fr.univ_lyon1.info.m1.cv_search.model.filter.FilterGreaterEqual;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
