@@ -10,16 +10,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ExperienceTest {
 
-    private Experience experience;
-
-    @BeforeEach
-    public void setUp() {
-        // Given 
-        experience = new Experience();
-    }
-
     @Test
-    public void testAddSkill() {
+    public void testAddExperience() {
+        // Given 
+        Experience experience= new Experience();
         // When
         experience.setCompany("UCBL");
         experience.setStart(2010);

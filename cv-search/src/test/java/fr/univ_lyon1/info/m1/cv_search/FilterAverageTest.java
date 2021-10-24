@@ -37,19 +37,19 @@ public class FilterAverageTest {
         skills.addSkill("c");
         skills.addSkill("java");
 
-        FilterAverage average = new FilterAverage(20);
+        FilterAverage average = new FilterAverage(50);
         list.addApplicant(a);
         list.addApplicant(b);
        
         ApplicantList al = average.getApplicants(list, skills);
 
-        System.out.println("------------------------------------");
+        boolean foundKevin = false;
         for(Applicant model : al) {
-            System.out.println(model.getName());
+            if (model.getName() == "Kevin") {
+                foundKevin = true;
+            }
         }
-        
-        boolean johnFound = false;
 
-        assertThat(johnFound, is(false));
+        assertThat(foundKevin, is(true));
     }
 }
