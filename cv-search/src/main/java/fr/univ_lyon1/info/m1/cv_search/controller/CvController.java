@@ -25,7 +25,7 @@ public final class CvController {
     }
 
     /**
-     * Initialise the lists of {@link FilterStrategy}.
+     * Initialise the list of {@link FilterStrategy}.
      */
     public void initStrategies() {
         FilterListSingleton filterList = FilterListSingleton.getInstance();

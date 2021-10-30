@@ -183,8 +183,9 @@ public class JfxView implements PropertyChangeListener {
             Button removeCardButton = new Button("x");
             Label applicantLabel = new Label(
                     applicant.getName()
-                            + " : Note moyenne de "
+                            + " : Average mark of "
                             + new DecimalFormat("#.##").format(applicant.getAverage())
+                            + " "
             );
             removeCardButton.setOnAction(event ->  cvController.removeApplicant(applicant));
 
