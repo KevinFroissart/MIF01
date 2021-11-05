@@ -1,0 +1,61 @@
+visit -> http://www.plantuml.com/plantuml/uml/um80
+
+@startuml
+class JfxView {}
+
+class CvController {}
+
+class SkillList {}
+
+class ApplicantList {}
+
+JfxView *-right- CvController
+
+CvController *-- SkillList
+CvController *-- ApplicantList
+@enduml
+
+@startuml
+class SkillList {}
+
+class ApplicantList {}
+
+class CustomObserver {}
+
+CustomObserver <-- SkillList
+CustomObserver <-- ApplicantList
+@enduml
+
+@startuml
+interface FilterStrategy{}
+
+class FilterAverage implements FilterStrategy {}
+
+class FilterGreaterEqual implements FilterStrategy {}
+
+class FilterLesserEqual implements FilterStrategy {}
+
+class FilterExperience implements FilterStrategy {}
+@enduml
+
+@startuml
+class CustomObserver {}
+
+class ApplicantList extends CustomObserver {}
+
+class SkillList extends CustomObserver {}
+@enduml
+
+@startuml
+interface FilterStrategy{}
+interface FilterStrategy {}
+
+
+class FilterListSingleton {
+- instance
++ getInstance()
+}
+
+
+FilterStrategy --* FilterListSingleton
+@enduml
