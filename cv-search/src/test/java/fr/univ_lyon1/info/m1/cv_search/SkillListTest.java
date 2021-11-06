@@ -24,10 +24,7 @@ public class SkillListTest {
         s.removeSkill("c++");
         found = s.toString().contains("c++");
         assertThat(found, is(false));
-        assertThat(found, matches(hasSize(1)).and(contains(42)));
     }
-
-
 
     @Test
     public void testRemoveSkill() {

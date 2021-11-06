@@ -18,9 +18,9 @@ public class FilterAverageTest {
     public void testFilterAverage() {
         System.out.println("--------------FilterAverageTest---------------");
 
+        // Given
         ApplicantListBuilder builder = new ApplicantListBuilder(new File("."));
 
-        // When
         ApplicantList list = builder.build();
 
         Applicant a = new Applicant();
@@ -40,7 +40,8 @@ public class FilterAverageTest {
         FilterAverage average = new FilterAverage(50);
         list.addApplicant(a);
         list.addApplicant(b);
-       
+
+        // When
         ApplicantList al = average.getApplicants(list, skills);
 
         boolean foundKevin = false;
@@ -50,6 +51,7 @@ public class FilterAverageTest {
             }
         }
 
+        // Then
         assertThat(foundKevin, is(true));
     }
 }

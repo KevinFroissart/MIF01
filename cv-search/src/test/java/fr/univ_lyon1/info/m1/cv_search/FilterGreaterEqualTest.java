@@ -14,8 +14,9 @@ public class FilterGreaterEqualTest {
     public void testGreaterEqualFilter() {
         System.out.println("--------------FilterGreaterEqualTest---------------");
 
+        // Given
         ApplicantList list = new ApplicantList();
-        String[] skills = {"java", "c", "c++", "js"};
+        String[] skills = {"java", "js"};
 
         Applicant a = new Applicant();
         a.setName("Hamza");
@@ -37,17 +38,22 @@ public class FilterGreaterEqualTest {
         list.addApplicant(c);
 
         FilterGreaterEqual filterGreaterEqual = new FilterGreaterEqual(35);
-        //assertThat("All >= 70", is(filterGreaterEqual.toString()));
         SkillList skillList = new SkillList();
         for (String s : skills) {
-            skillList.addSkill(s.toString());
+            skillList.addSkill(s);
         }
-        //filterGreaterEqual.getApplicants(list, skillList);
 
+        // When
+        ApplicantList al = filterGreaterEqual.getApplicants(list, skillList);
 
+        boolean foundToto = false;
+        for(Applicant model : al) {
+            if (model.getName() == "Toto") {
+                foundToto = true;
+            }
+        }
 
-        System.out.println("La liste: " + filterGreaterEqual.getApplicants(list, skillList));
-
-
+        // Then
+        assertThat(foundToto, is(true));
     }
 }
