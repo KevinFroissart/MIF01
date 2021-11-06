@@ -38,14 +38,17 @@ public class ApplicantBuilder {
 
         applicant.setName((String) map.get("name"));
 
-        // Cast may fail if the Yaml is incorrect. Ideally we should provide
-        // clean error messages.
-        @SuppressWarnings("unchecked")
-        Map<String, Integer> skills = (Map<String, Integer>) map.get("skills");
+        Map<String, Integer> skills;
+        Map<String, Map<String, Object>> experiences;
 
-        @SuppressWarnings("unchecked")
-        Map<String, Map<String, Object>> experiences = (Map<String, Map<String, Object>>)
-                map.get("experience");
+        try {
+            skills = (Map<String, Integer>) map.get("skills");
+            experiences = (Map<String, Map<String, Object>>)
+                    map.get("experience");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Error(e);
+        }
 
         for (String company : experiences.keySet()) {
             Experience experience = new Experience();
