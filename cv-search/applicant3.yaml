@@ -1,11 +1,11 @@
-name: Foo Bar
+name: John Doe
 skills:
-  c: 40
-  c++: 90
+  c: 60
+  c++: 50
   java: 55
 experience:
-  UCBL:
-    start: 2004
+  IBM:
+    start: 2018
     end: 2021
     keywords:
       - Scheme
