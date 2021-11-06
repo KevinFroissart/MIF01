@@ -15,12 +15,16 @@ public class ApplicantBuilderTest {
     public void testBuildApplicant() {
         System.out.println("--------------ApplicantBuilderTest---------------");
 
+        // Given
         ApplicantListBuilder builder = new ApplicantListBuilder(new File("."));
-        ApplicantList a = builder.build();
         Applicant applicant = new Applicant();
         applicant.setName("toto");
-        a.addApplicant(applicant);
-        assertThat("toto", is(a.getList().get(a.size()-1).getName()));
 
+        // When
+        ApplicantList a = builder.build();
+        a.addApplicant(applicant);
+
+        // Then
+        assertThat("toto", is(a.getList().get(a.size()-1).getName()));
     }
 }
